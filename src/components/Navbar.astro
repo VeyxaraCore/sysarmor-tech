@@ -2,24 +2,35 @@
 // src/components/Navbar.astro
 ---
 
+<!-- Importación directa de la tipografía Orbitron desde Google Fonts -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap');
+  
+  .font-tech {
+    font-family: 'Orbitron', sans-serif;
+  }
+</style>
+
 <header class="sticky top-0 z-50 h-[76px] w-full bg-[#0d1527] border-b border-slate-800">
   <nav class="w-full h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-    <!-- LOGO CORPORATIVO CON ESCUDO CIRCULAR Y TEXTO -->
-    <a href="/" class="flex items-center gap-3 py-1 group">
+    <!-- LOGO CORPORATIVO CON ISOTIPO Y TIPOGRAFÍA TECH -->
+    <a href="/" class="flex items-center gap-3.5 py-1 group">
       <div class="relative h-11 w-11 sm:h-12 sm:w-12 rounded-full overflow-hidden border border-[#D4AF37]/50 shadow-[0_0_10px_rgba(212,175,55,0.2)] flex-shrink-0 bg-[#0d1527]">
         <img 
           src="/images/logo-navbar.webp" 
           srcset="/images/logo-navbar.webp 140w"
           sizes="74px"
-          alt="SysArmor Tech Logo" 
+          alt="Veyxara Core Logo" 
           width="74"
           height="74"
           class="h-full w-full object-cover scale-105"
         />
       </div>
-      <span class="font-extrabold tracking-wider text-base sm:text-xl uppercase inline-flex items-center">
+      
+      <!-- Texto con tipografía futurista/tech -->
+      <span class="font-tech font-extrabold tracking-widest text-base sm:text-xl uppercase inline-flex items-center">
         <span class="text-white">VEYXARA</span>
-        <span class="text-[#D4AF37] ml-1.5">CORE</span>
+        <span class="text-[#D4AF37] ml-2">CORE</span>
       </span>
     </a>
 
@@ -59,10 +70,9 @@
     </button>
   </nav>
 
-  <!-- Menú Desplegable Móvil con Textura Tech Definida -->
+  <!-- Menú Desplegable Móvil -->
   <div id="sys-mobile-dropdown" class="hidden md:hidden absolute top-[76px] inset-x-0 bg-[#070b12]/95 bg-[radial-gradient(circle_at_50%_10%,rgba(217,119,6,0.12)_0%,transparent_50%),linear-gradient(to_right,rgba(51,65,85,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.3)_1px,transparent_1px)] bg-[size:100%_100%,2rem_2rem,2rem_2rem] h-[calc(100vh-120px)] overflow-y-auto border-b border-amber-500/20 px-6 py-4 flex-col justify-between text-lg text-center z-50 shadow-2xl backdrop-blur-md">
     
-    <!-- Grupo superior de enlaces -->
     <div class="flex flex-col gap-1.5">
       <a href="/#trayectoria" class="sys-link text-slate-200 hover:text-[#D4AF37] hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-[#D4AF37]">Trayectoria</a>
       <a href="/#enfoque-tecnico" class="sys-link text-slate-200 hover:text-[#D4AF37] hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-[#D4AF37]">Enfoque Técnico</a>
@@ -71,7 +81,6 @@
       <a href="/#contacto" class="sys-link text-slate-200 hover:text-[#D4AF37] hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-[#D4AF37]">Contacto</a>
     </div>
 
-    <!-- Botón inferior completamente libre de la barra del navegador -->
     <div class="pt-3 pb-4 border-t border-slate-800/80 mt-2 flex-shrink-0">
       <a href="/tools" class="sys-link block w-full py-3 px-4 rounded-xl bg-[#D4AF37] text-[#020617] font-bold text-base hover:bg-white transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]">
         Herramientas
