@@ -38,20 +38,23 @@ const {
   enfoque
 } = Astro.props;
 
-const siteURL = Astro.site ? Astro.site.origin : 'https://sysarmortech.com';
+// CORRECCIÓN 1: Fallback actualizado a Veyxara
+const siteURL = Astro.site ? Astro.site.origin : 'https://veyxara.com';
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const fullOgImageUrl = new URL(ogImage, siteURL).href;
 
-const pageTitle = title.includes('SysArmor Tech') ? title : `${title} | SysArmor Tech`;
+// CORRECCIÓN 2: Título de marca actualizado a Veyxara
+const pageTitle = title.includes('Veyxara') ? title : `${title} | Veyxara`;
 
+// CORRECCIÓN 3: Marcado Schema.org / JSON-LD totalmente enfocado en Veyxara
 const schemaOrgData = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
       "@id": `${siteURL}/#organization`,
-      "name": "SysArmor Tech",
-      "alternateName": ["SysArmor Tech Colombia", "SysArmorTech"],
+      "name": "Veyxara",
+      "alternateName": ["Veyxara Core", "Veyxara Tech"],
       "url": siteURL,
       "logo": {
         "@type": "ImageObject",
@@ -65,14 +68,14 @@ const schemaOrgData = {
         "@addressCountry": "CO"
       },
       "sameAs": [
-        "https://www.linkedin.com/company/sysarmortech"
+        "https://www.linkedin.com/company/veyxara"
       ]
     },
     {
       "@type": "WebSite",
       "@id": `${siteURL}/#website`,
       "url": siteURL,
-      "name": "SysArmor Tech",
+      "name": "Veyxara",
       "description": description,
       "publisher": {
         "@id": `${siteURL}/#organization`
@@ -217,7 +220,8 @@ const schemaOrgData = {
             <div class="pt-4 border-t border-slate-300 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-700 font-mono">
               {pubDate && <span>📅 Publicado el: {pubDate}</span>}
               {author && <span>👤 {author}</span>}
-              <span>💻 SYSARMOR TECH</span>
+              {/* CORRECCIÓN 4: Firma del Blog actualizada */}
+              <span>💻 VEYXARA</span>
             </div>
 
             {enfoque && (

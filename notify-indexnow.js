@@ -1,8 +1,10 @@
 import https from 'https';
-import http from 'http';
 
-const HOST = 'sysarmortech.com';
+// CORRECCIÓN: Actualización al nuevo dominio oficial de Veyxara
+const HOST = process.env.SITE_URL ? process.env.SITE_URL.replace(/^https?:\/\//, '') : 'veyxara.com';
 const KEY = '9ce56439679d47feb8509ee2d13b14e3';
+
+// Astro genera el sitemap como sitemap-index.xml o sitemap-0.xml según la configuración
 const SITEMAP_URL = `https://${HOST}/sitemap-0.xml`;
 
 function fetchSitemap() {
@@ -14,7 +16,7 @@ function fetchSitemap() {
         if (res.statusCode === 200) {
           resolve(data);
         } else {
-          reject(new Error(`Fallo al descargar sitemap. Status code: ${res.statusCode}`));
+          reject(new Error(`Fallo al descargar sitemap desde ${SITEMAP_URL}. Status code: ${res.statusCode}`));
         }
       });
     }).on('error', (err) => {
@@ -41,7 +43,7 @@ async function notifyIndexNow() {
       return;
     }
 
-    console.log(`🚀 Se extrajeron ${urlList.length} URLs dinámicamente (Blog + Herramientas). Enviando a IndexNow...`);
+    console.log(`🚀 Se extrajeron ${urlList.length} URLs dinámicamente. Enviando a IndexNow para ${HOST}...`);
 
     const postData = JSON.stringify({
       host: HOST,
@@ -66,7 +68,7 @@ async function notifyIndexNow() {
       res.on('data', (chunk) => { responseBody += chunk; });
       res.on('end', () => {
         if (res.statusCode === 200 || res.statusCode === 202) {
-          console.log(`✅ IndexNow Notificación Exitosa - Status: ${res.statusCode}`);
+          console.log(`✅ IndexNow Notificación Exitosa para ${HOST} - Status: ${res.statusCode}`);
         } else {
           console.warn(`⚠️ IndexNow respondió con código inesperado: ${res.statusCode} - ${responseBody}`);
         }

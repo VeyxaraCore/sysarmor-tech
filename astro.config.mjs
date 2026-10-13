@@ -1,3 +1,4 @@
+// astro.config.mjs
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
@@ -7,10 +8,10 @@ import preact from '@astrojs/preact';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  site: 'https://sysarmortech.com',
+  // CORRECCIÓN: Apuntar al nuevo dominio oficial
+  site: 'https://veyxara.com',
   output: 'server',
 
-  // Sin redirecciones automáticas que afecten las herramientas
   redirects: {},
 
   vite: {
