@@ -19,7 +19,7 @@ const sortedPosts = posts.sort((a, b) => {
 const categories = ['Todos', ...new Set(posts.map((post) => post.data.category).filter(Boolean))];
 
 // 2. Metadatos SEO optimizados para la página principal del Blog
-const pageTitle = "Blog de Ingeniería, Hardening y Operaciones | SysArmor Tech";
+const pageTitle = "Blog de Ingeniería, Hardening y Operaciones | Veyxara Core";
 const pageDescription = "Artículos técnicos de nivel 2 y 3 sobre Active Directory, Windows Server, Microsoft Intune, Azure y hardening de infraestructura IT.";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
@@ -196,7 +196,7 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
           Base de Conocimientos Técnicos para Administradores de Sistemas
         </h2>
         <p class="text-zinc-700 text-xs sm:text-sm leading-relaxed font-sans font-medium">
-          Bienvenido al centro operativo de <strong class="text-zinc-900">SysArmor Tech</strong>. Este espacio recopila documentación técnica avanzada, guías de arquitectura híbrida, procedimientos de hardening en <strong class="text-zinc-900">Windows Server</strong>, gestión de identidades en <strong class="text-zinc-900">Active Directory</strong> y despliegues de políticas de seguridad mediante <strong class="text-zinc-900">Microsoft Intune</strong>. Todas las soluciones están diseñadas bajo principios estrictos de optimización, automatización con PowerShell y mitigación de vectores de ataque a nivel empresarial.
+          Bienvenido al centro operativo de <strong class="text-zinc-900">Veyxara Blog</strong>. Este espacio recopila documentación técnica avanzada, guías de arquitectura híbrida, procedimientos de hardening en <strong class="text-zinc-900">Windows Server</strong>, gestión de identidades en <strong class="text-zinc-900">Active Directory</strong> y despliegues de políticas de seguridad mediante <strong class="text-zinc-900">Microsoft Intune</strong>. Todas las soluciones están diseñadas bajo principios estrictos de optimización, automatización con PowerShell y mitigación de vectores de ataque a nivel empresarial.
         </p>
       </section>
 
