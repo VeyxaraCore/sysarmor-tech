@@ -2,28 +2,34 @@
 // src/components/FAQ.astro
 
 interface FaqItem {
+  code: string;
   question: string;
   answer: string;
 }
 
 const faqs: FaqItem[] = [
   {
+    code: "01",
     question: "¿Cómo se pueden utilizar las herramientas y scripts publicados?",
     answer: "Todos los recursos técnicos y scripts se comparten bajo principios de código abierto y autoría personal para uso libre y educativo, siguiendo las licencias definidas en cada repositorio."
   },
   {
+    code: "02",
     question: "¿Esto tiene algún costo?",
     answer: "No. Todas las herramientas, scripts y documentación publicados en este portafolio son de acceso libre y gratuito con fines educativos y de referencia técnica. No se comercializa ningún tipo de software ni se prestan servicios de soporte comercial bajo este espacio."
   },
   {
+    code: "03",
     question: "¿Cómo reporto un problema o fallo en una herramienta?",
     answer: "Al tratarse de un repositorio de recursos técnicos e infraestructura, cualquier incidencia, reporte de error o propuesta de mejora se gestiona exclusivamente a través de los canales de colaboración en GitHub o mediante contacto directo por LinkedIn."
   },
   {
+    code: "04",
     question: "¿Puedo proponer mejoras o reportar errores en las guías?",
     answer: "Sí, al tratarse de un proyecto colaborativo de ingeniería, puedes aportar mediante Pull Requests o revisar los repositorios directamente enlazados a GitHub para auditoría y retroalimentación técnica."
   },
   {
+    code: "05",
     question: "¿Cuál es el enfoque principal de los artículos y la documentación?",
     answer: "Están centrados en resolver problemáticas complejas de nivel 2 y 3 sobre Windows Server, Active Directory, automatización avanzada con PowerShell y seguridad en entornos híbridos."
   }
@@ -31,31 +37,56 @@ const faqs: FaqItem[] = [
 ---
 
 <section id="faq" class="w-full min-h-[calc(100vh-76px)] py-12 px-4 sm:px-6 bg-[#cbd5e1] border-t border-zinc-300 flex flex-col justify-center items-center scroll-mt-[76px]">
-  <div class="max-w-3xl mx-auto space-y-8 w-full my-auto">
+  <div class="max-w-4xl mx-auto space-y-8 w-full my-auto">
     
-    <!-- Encabezado -->
+    <!-- Encabezado sobrio y alineado al sitio -->
     <div class="text-center space-y-2">
-      <h2 class="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
+      <span class="text-xs font-mono font-extrabold text-amber-700 uppercase tracking-widest block">
+        RESOLUCIÓN DE DUDAS
+      </span>
+      <h2 class="text-xl sm:text-2xl font-bold text-zinc-900 tracking-wide uppercase">
         Preguntas Frecuentes
       </h2>
-      <p class="text-zinc-700 font-medium text-xs sm:text-sm">
+      <p class="text-zinc-700 font-medium text-xs sm:text-sm max-w-xl mx-auto">
         Sobre el uso de herramientas, licencias y colaboración técnica.
       </p>
     </div>
     
-    <!-- Tarjeta principal limpia con grises neutros (zinc) -->
-    <div class="bg-white border-2 border-zinc-300 rounded-2xl shadow-lg shadow-zinc-400/30 divide-y divide-zinc-200 overflow-hidden" role="region" aria-label="Preguntas frecuentes">
-      {faqs.map((faq) => (
-        <details name="faq-accordion" class="group transition-colors duration-200 open:bg-zinc-50">
-          <summary class="flex justify-between items-center font-semibold text-zinc-900 px-6 py-4 sm:py-5 cursor-pointer list-none hover:text-blue-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 text-sm sm:text-base">
-            <span>{faq.question}</span>
-            <span class="w-7 h-7 rounded-full bg-zinc-100 border border-zinc-300 shadow-sm flex items-center justify-center text-zinc-700 shrink-0 ml-4 transition-transform duration-200 group-open:rotate-180 group-open:bg-blue-600 group-open:border-blue-600 group-open:text-white" aria-hidden="true">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+    <!-- Acordeones en tarjetas independientes con estética técnica -->
+    <div class="space-y-3" role="region" aria-label="Preguntas frecuentes">
+      {faqs.map((faq, index) => (
+        <details 
+          name="faq-accordion" 
+          class="group bg-white rounded-xl border border-zinc-300/90 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+          open={index === 0}
+        >
+          <summary class="flex items-center justify-between p-5 md:p-6 cursor-pointer select-none list-none text-zinc-900 font-bold text-sm sm:text-base group-open:text-cyan-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500">
+            
+            <div class="flex items-center space-x-3">
+              <span class="text-xs font-mono font-bold text-amber-600 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md shrink-0">
+                //{faq.code}
+              </span>
+              <span>{faq.question}</span>
+            </div>
+
+            <!-- Indicador circular que pasa de gris a cian institucional -->
+            <div class="w-7 h-7 rounded-full bg-slate-100 group-open:bg-cyan-900 group-open:text-white flex items-center justify-center transition-all duration-200 shrink-0 ml-3" aria-hidden="true">
+              <svg 
+                class="w-4 h-4 transition-transform duration-200 group-open:rotate-180" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                stroke-width="2.5" 
+                viewBox="0 0 24 24"
+              >
                 <path d="M6 9l6 6 6-6"></path>
               </svg>
-            </span>
+            </div>
+
           </summary>
-          <div class="text-zinc-700 px-6 pb-5 pt-1 leading-relaxed text-xs sm:text-sm font-medium">
+
+          <div class="px-6 pb-6 pt-1 text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans font-normal border-t border-zinc-100">
             <p>{faq.answer}</p>
           </div>
         </details>

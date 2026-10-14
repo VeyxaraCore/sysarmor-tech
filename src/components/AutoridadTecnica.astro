@@ -1,116 +1,106 @@
 ---
 // src/components/AutoridadTecnica.astro
+
+const skillCategories = [
+  {
+    category: "MICROSOFT & HYBRID INFRASTRUCTURE",
+    skills: ["Windows Server", "Microsoft 365", "Active Directory", "Exchange", "Hyper-V", "Azure Admin", "Infraestructura Híbrida"]
+  },
+  {
+    category: "CLOUD & NETWORKING",
+    skills: ["Azure", "Google Cloud", "VNet Peering", "VPN Site-to-Site", "Conectividad Híbrida", "Redes TCP/IP"]
+  },
+  {
+    category: "AUTOMATION & OPERATIONS",
+    skills: ["PowerShell", "Infrastructure Automation", "Patch Management", "Backup & Recovery", "Soporte Nivel 3"]
+  },
+  {
+    category: "SECURITY & IDENTITY",
+    skills: ["Microsoft Entra ID", "PIM", "Conditional Access", "Defender", "ASR", "Hardening", "Vulnerability Management"]
+  },
+  {
+    category: "GOVERNANCE & COMPLIANCE",
+    skills: ["ITIL V3 Foundation", "Marcos de Seguridad", "Políticas GPO", "Documentación de Arquitectura"]
+  }
+];
 ---
 
 <!-- min-h-[calc(100vh-76px)] y centrado vertical exacto para escritorio, con flujo seguro en móvil -->
-<section id="enfoque-tecnico" class="w-full min-h-[calc(100vh-76px)] py-12 px-4 sm:px-6 bg-[#cbd5e1] border-t border-zinc-300 flex flex-col justify-center items-center">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full my-auto">
+<section id="enfoque-tecnico" class="w-full min-h-[calc(100vh-76px)] py-12 px-4 sm:px-6 bg-[#cbd5e1] border-t border-zinc-300 flex flex-col justify-center items-center scroll-mt-[76px]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 items-center w-full my-auto">
 
     <!-- Lado Izquierdo: Trayectoria -->
-    <div class="space-y-6">
+    <div class="lg:col-span-5 space-y-6">
+      <div class="space-y-2">
+        <span class="text-xs font-mono font-extrabold text-amber-700 uppercase tracking-widest block">
+          PERFIL & PERIODO PROFESIONAL
+        </span>
+        <h2 class="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tight uppercase leading-tight">
+          Trayectoria y Respaldo Técnico
+        </h2>
+      </div>
 
-      <h2 class="text-3xl font-display font-bold text-neutral-900 uppercase tracking-wide">
-        Trayectoria y Respaldo Técnico
-      </h2>
-
-      <div class="space-y-4 text-neutral-700 font-sans leading-relaxed">
-
-        <h3 class="text-xl font-bold text-neutral-900">
-          20+ Años de Experiencia en Infraestructura Crítica
-        </h3>
+      <div class="space-y-4 text-zinc-700 text-sm md:text-base leading-relaxed font-sans">
+        <div class="p-4 bg-white/80 border-l-4 border-l-amber-600 rounded-r-lg shadow-sm">
+          <h3 class="font-bold text-neutral-900 text-base md:text-lg">
+            20+ Años de Experiencia en Infraestructura Crítica
+          </h3>
+        </div>
 
         <p>
-          Hemos liderado iniciativas de modernización y operación de infraestructura
-          en <strong class="text-neutral-900 font-bold">entornos empresariales y gubernamentales de alta exigencia</strong>,
-          con experiencia en los sectores financiero, energético, público y de servicios.
+          He liderado iniciativas de modernización y operación de infraestructura en <strong class="text-neutral-900 font-bold">entornos empresariales y gubernamentales de alta exigencia</strong>, con trayectoria en los sectores financiero, energético, público y de servicios.
         </p>
 
         <p>
-          Nuestra experiencia combina{" "}
-          <strong class="text-neutral-900 font-bold">
-            infraestructura Microsoft, Cloud, automatización, seguridad y operaciones
-          </strong>,
-          con la gestión estratégica de entornos híbridos de alta disponibilidad,
-          priorizando resiliencia, continuidad operativa y mantenibilidad.
+          Mi experiencia combina <strong class="text-neutral-900 font-bold">infraestructura Microsoft, Cloud, automatización, seguridad y operaciones</strong>, priorizando resiliencia, continuidad operativa, alta disponibilidad y mantenibilidad en entornos híbridos.
         </p>
-
       </div>
     </div>
 
 
-    <!-- Lado Derecho: Experiencia Técnica -->
-    <div class="bg-neutral-900 text-white p-6 md:p-8 rounded-xl shadow-xl border border-neutral-800">
-
-      <h3 class="text-xl font-display font-bold mb-6 border-b border-neutral-800 pb-4">
-        Experiencia Técnica y Capacidades
-      </h3>
-
-      <ul class="space-y-6">
-
-        <!-- Microsoft Infrastructure -->
-        <li>
-          <span class="block text-[#D4AF37] font-bold mb-1 uppercase tracking-wider text-sm">
-            MICROSOFT & HYBRID INFRASTRUCTURE
+    <!-- Lado Derecho: Experiencia Técnica (Panel Estilo Console Stack) -->
+    <div class="lg:col-span-7">
+      <div class="bg-[#0f172a] border border-slate-700/80 rounded-xl overflow-hidden shadow-xl shadow-slate-900/20">
+        
+        <!-- Cabecera de Consola -->
+        <div class="bg-[#1e293b] px-4 py-2.5 flex items-center justify-between border-b border-slate-700/60">
+          <div class="flex items-center space-x-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
+          </div>
+          <span class="text-[11px] font-mono font-bold text-cyan-400 tracking-wider uppercase">
+            Veyxara // Technical Stack
           </span>
+        </div>
 
-          <p class="text-sm text-neutral-300">
-            Windows Server · Microsoft 365 · Active Directory · Exchange · Hyper-V ·
-            Azure Administration · Infraestructura Híbrida
-          </p>
-        </li>
+        <!-- Contenido de Skills con Badges -->
+        <div class="p-6 md:p-8 space-y-6">
+          <h3 class="text-lg font-bold text-white tracking-wide border-b border-slate-800 pb-3">
+            Experiencia Técnica y Capacidades
+          </h3>
 
+          <div class="space-y-5">
+            {skillCategories.map((group) => (
+              <div class="space-y-2">
+                <span class="text-[11px] font-mono font-extrabold text-amber-400 uppercase tracking-wider block">
+                  {group.category}
+                </span>
+                
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  {group.skills.map((skill) => (
+                    <span class="px-2.5 py-1 rounded-md bg-slate-800/90 hover:bg-slate-700 border border-slate-700/80 text-slate-200 text-xs font-medium transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
 
-        <!-- Cloud & Networking -->
-        <li>
-          <span class="block text-[#D4AF37] font-bold mb-1 uppercase tracking-wider text-sm">
-            CLOUD & NETWORKING
-          </span>
+        </div>
 
-          <p class="text-sm text-neutral-300">
-            Azure · Google Cloud · VNet Peering · VPN Site-to-Site ·
-            Conectividad Híbrida · Redes TCP/IP
-          </p>
-        </li>
-
-
-        <!-- Automation & Operations -->
-        <li>
-          <span class="block text-[#D4AF37] font-bold mb-1 uppercase tracking-wider text-sm">
-            AUTOMATION & OPERATIONS
-          </span>
-
-          <p class="text-sm text-neutral-300">
-            PowerShell · Infrastructure Automation · Patch Management ·
-            Backup & Recovery · Soporte Nivel 3
-          </p>
-        </li>
-
-
-        <!-- Security & Identity -->
-        <li>
-          <span class="block text-[#D4AF37] font-bold mb-1 uppercase tracking-wider text-sm">
-            SECURITY & IDENTITY
-          </span>
-
-          <p class="text-sm text-neutral-300">
-            Microsoft Entra ID · PIM · Conditional Access · Defender ·
-            ASR · Hardening · Vulnerability Management
-          </p>
-        </li>
-
-
-        <!-- Governance & Compliance -->
-        <li>
-          <span class="block text-[#D4AF37] font-bold mb-1 uppercase tracking-wider text-sm">
-            GOVERNANCE & COMPLIANCE
-          </span>
-
-          <p class="text-sm text-neutral-300">
-            ITIL V3 Foundation
-          </p>
-        </li>
-
-      </ul>
+      </div>
     </div>
 
   </div>

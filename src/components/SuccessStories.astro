@@ -2,16 +2,19 @@
 // src/components/SuccessStories.astro
 const successStories = [
   {
+    code: "01",
     category: "SECOPS & ENDPOINT SECURITY",
     title: "Blindaje ASR en +500 Dispositivos",
     description: "Despliegue de políticas avanzadas de Attack Surface Reduction (ASR) y afinamiento en Defender para entidad pública. Reducción drástica de la superficie de ataque y contención inmediata de vectores de riesgo."
   },
   {
+    code: "02",
     category: "IDENTITY & CLOUD SECURITY",
     title: "Gobierno PIM & Automatización Entra ID",
     description: "Implementación de acceso Just-In-Time (PIM) en entorno Multitenant bancario y automatización con PowerShell, reduciendo el tiempo de aprovisionamiento en un 50%."
   },
   {
+    code: "03",
     category: "VULNERABILITY MANAGEMENT",
     title: "Remediación Crítica Qualys / CVE",
     description: "Liderazgo del ciclo de remediación sobre parques de +200 servidores Windows. Hardening de llaves de registro, parcheo complejo y mitigación sin afectación operativa."
@@ -19,34 +22,42 @@ const successStories = [
 ];
 ---
 
-<section id="casos-de-exito" class="w-full min-h-[calc(100vh-76px)] py-12 px-4 sm:px-6 bg-[#cbd5e1] border-t border-zinc-300 flex flex-col justify-center items-center">
-  <div class="max-w-[1400px] mx-auto space-y-12 w-full my-auto">
+<section id="casos-de-exito" class="w-full min-h-[calc(100vh-76px)] py-12 px-4 sm:px-6 bg-[#cbd5e1] border-t border-zinc-300 flex flex-col justify-center items-center scroll-mt-[76px]">
+  <div class="max-w-[1400px] mx-auto space-y-10 w-full my-auto">
     
     <!-- Título de Sección -->
     <div class="text-center space-y-2">
-      <h2 class="text-3xl font-display font-bold text-neutral-900 uppercase tracking-wide">Proyectos e Implementaciones</h2>
-      <p class="text-zinc-700 font-medium text-base">Arquitectura, automatización e infraestructura de alto impacto.</p>
+      <h2 class="text-xl md:text-2xl font-bold text-neutral-900 tracking-wide uppercase">Proyectos e Implementaciones</h2>
+      <p class="text-zinc-700 font-medium text-xs md:text-sm max-w-2xl mx-auto">Arquitectura, automatización e infraestructura de alto impacto.</p>
     </div>
 
-    <!-- Grid simétrico de 3 columnas para los proyectos reales -->
+    <!-- Grid de 3 columnas con estilo de Log / Registro Técnico -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
       {successStories.map((story) => (
-        <div class="p-6 md:p-7 rounded-xl border-2 bg-white text-neutral-900 border-zinc-300 shadow-md shadow-zinc-400/20 hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="block text-xs font-bold tracking-wider uppercase truncate text-amber-700">
+        <div class="bg-white rounded-xl border-l-4 border-l-cyan-600 border-y border-r border-zinc-300 shadow-md shadow-zinc-400/10 hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          
+          <div class="p-6 space-y-4">
+            <!-- Cabecera tipo Log de Sistema -->
+            <div class="flex items-center justify-between pb-2 border-b border-zinc-100">
+              <span class="text-[10px] font-mono font-bold text-cyan-800 tracking-widest uppercase">
                 {story.category}
+              </span>
+              <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded">
+                ID://{story.code}
               </span>
             </div>
 
-            <h3 class="font-display font-bold mb-3 text-lg md:text-xl text-neutral-900">
+            <!-- Título del Proyecto -->
+            <h3 class="font-display font-bold text-base md:text-lg text-neutral-900 leading-snug pt-1">
               {story.title}
             </h3>
 
-            <p class="text-sm leading-relaxed font-sans font-normal text-zinc-700">
+            <!-- Descripción -->
+            <p class="text-xs md:text-sm leading-relaxed font-sans text-zinc-600">
               {story.description}
             </p>
           </div>
+
         </div>
       ))}
     </div>
