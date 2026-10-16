@@ -46,7 +46,7 @@ const fullOgImageUrl = new URL(ogImage, siteURL).href;
 // CORRECCIÓN 2: Título de marca actualizado a Veyxara
 const pageTitle = title.includes('Veyxara') ? title : `${title} | Veyxara`;
 
-// CORRECCIÓN 3: Marcado Schema.org / JSON-LD totalmente enfocado en Veyxara
+// CORRECCIÓN 3: Marcado Schema.org / JSON-LD totalmente enfocado en Veyxara con el nuevo logo HD
 const schemaOrgData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -58,7 +58,7 @@ const schemaOrgData = {
       "url": siteURL,
       "logo": {
         "@type": "ImageObject",
-        "@url": `${siteURL}/favicon-v2.png?v=5`
+        "@url": `${siteURL}/web-app-manifest-512x512.png`
       },
       "description": "Firma de consultoría e ingeniería especializada en infraestructura crítica, ecosistema Microsoft, Nivel 3 y SecOps.",
       "address": {
@@ -119,10 +119,12 @@ const schemaOrgData = {
       <link rel="preload" href={lcpImage} as="image" type="image/webp" />
     )}
 
-    <!-- CORRECCIÓN DEL FAVICON: Apuntando al nombre real de la carpeta public -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-v2.png?v=5" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-v2.png?v=5" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-v2.png?v=5" />
+    <!-- FAVICON CONFIGURATION: Estándar completo de producción -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
