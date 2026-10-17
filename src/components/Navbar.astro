@@ -2,18 +2,9 @@
 // src/components/Navbar.astro
 ---
 
-<!-- Importación directa de la tipografía Orbitron desde Google Fonts -->
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap');
-  
-  .font-tech {
-    font-family: 'Orbitron', sans-serif;
-  }
-</style>
-
 <header class="sticky top-0 z-50 h-[76px] w-full bg-[#0d1527] border-b border-slate-800">
   <nav class="w-full h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-    <!-- LOGO CORPORATIVO CON ISOTIPO Y TIPOGRAFÍA TECH -->
+    <!-- LOGO CORPORATIVO CON ISOTIPO Y TIPOGRAFÍA NATIVA TECH -->
     <a href="/" class="flex items-center gap-3.5 py-1 group">
       <div class="relative h-11 w-11 sm:h-12 sm:w-12 rounded-full overflow-hidden border border-[#D4AF37]/50 shadow-[0_0_10px_rgba(212,175,55,0.2)] flex-shrink-0 bg-[#0d1527]">
         <img 
@@ -27,8 +18,8 @@
         />
       </div>
       
-      <!-- Texto con tipografía futurista/tech -->
-      <span class="font-tech font-extrabold tracking-widest text-base sm:text-xl uppercase inline-flex items-center">
+      <!-- Texto equilibrado con el logo (Monospace Tech) -->
+      <span class="font-mono font-black tracking-[0.18em] text-lg sm:text-2xl uppercase inline-flex items-center">
         <span class="text-white">VEYXARA</span>
         <span class="text-[#D4AF37] ml-2">CORE</span>
       </span>
