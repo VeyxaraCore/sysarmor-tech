@@ -38,15 +38,12 @@ const {
   enfoque
 } = Astro.props;
 
-// CORRECCIÓN 1: Fallback actualizado a Veyxara
 const siteURL = Astro.site ? Astro.site.origin : 'https://veyxara.com';
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const fullOgImageUrl = new URL(ogImage, siteURL).href;
 
-// CORRECCIÓN 2: Título de marca actualizado a Veyxara
 const pageTitle = title.includes('Veyxara') ? title : `${title} | Veyxara`;
 
-// CORRECCIÓN 3: Marcado Schema.org / JSON-LD totalmente enfocado en Veyxara con el nuevo logo HD
 const schemaOrgData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -116,8 +113,15 @@ const schemaOrgData = {
       <link rel="preload" href={lcpImage} as="image" type="image/webp" />
     )}
 
-    <!-- FAVICON ÚNICO SVG: Máximo rendimiento y escalabilidad nativa -->
+    <!-- ESTRATEGIA HÍBRIDA DE FAVICONS -->
+    <!-- 1. SVG vectorial para navegadores modernos (pestañas de alta definición) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- 2. PNG de 192x192 obligatorio para Googlebot y buscadores (múltiplo de 48px) -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+
+    <!-- 3. Compatibilidad con dispositivos Apple / iOS -->
+    <link rel="apple-touch-icon" href="/favicon-192x192.png" />
     
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
