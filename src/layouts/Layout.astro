@@ -55,7 +55,7 @@ const schemaOrgData = {
       "url": siteURL,
       "logo": {
         "@type": "ImageObject",
-        "@url": `${siteURL}/web-app-manifest-512x512.png`
+        "@url": `${siteURL}/favicon-192x192-v2.png`
       },
       "description": "Firma de consultoría e ingeniería especializada en infraestructura crítica, ecosistema Microsoft, Nivel 3 y SecOps.",
       "address": {
@@ -113,15 +113,18 @@ const schemaOrgData = {
       <link rel="preload" href={lcpImage} as="image" type="image/webp" />
     )}
 
-    <!-- ESTRATEGIA HÍBRIDA DE FAVICONS -->
-    <!-- 1. SVG vectorial para navegadores modernos (pestañas de alta definición) -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- ESTRATEGIA HÍBRIDA DE FAVICONS (CON V2 PARA ROMPER CACHÉ EN GOOGLE) -->
+    <!-- 0. Fallback tradicional para navegadores antiguos y peticiones automáticas de red -->
+    <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
+
+    <!-- 1. SVG vectorial para navegadores modernos -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-v2.svg" />
     
     <!-- 2. PNG de 192x192 obligatorio para Googlebot y buscadores (múltiplo de 48px) -->
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192-v2.png" />
 
     <!-- 3. Compatibilidad con dispositivos Apple / iOS -->
-    <link rel="apple-touch-icon" href="/favicon-192x192.png" />
+    <link rel="apple-touch-icon" href="/favicon-192x192-v2.png" />
     
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
