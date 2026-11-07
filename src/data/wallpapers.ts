@@ -398,4 +398,31 @@ export const wallpapers: Wallpaper[] = [
     image: '/wallpapers/rey-leonidas.webp',    
     downloadUrl: '/wallpapers/rey-leonidas.webp'
   },
+    {
+    id: 'creacion-adan',
+    title: 'La creación de Adán',
+    category: 'Desktop', 
+    resolution: '3840x2160 (4K)',
+    aspectRatio: '16:9',
+    image: '/wallpapers/creacion-adan.webp',    
+    downloadUrl: '/wallpapers/creacion-adan.webp'
+  },
+    {
+    id: 'hellraiser',
+    title: 'Hellraiser - Puerta al infierno',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/hellraiser.webp',    
+    downloadUrl: '/wallpapers/hellraiser.webp'
+  },
+    {
+    id: 'don-quijote',
+    title: 'Don Quijote de la Mancha',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/don-quijote.webp',    
+    downloadUrl: '/wallpapers/don-quijote.webp'
+  },
 ];
