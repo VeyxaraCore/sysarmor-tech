@@ -425,4 +425,49 @@ export const wallpapers: Wallpaper[] = [
     image: '/wallpapers/don-quijote.webp',    
     downloadUrl: '/wallpapers/don-quijote.webp'
   },
+  {
+    id: 'nave-veyxara',
+    title: 'Nave Internacional Espacial',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/nave-veyxara.webp',    
+    downloadUrl: '/wallpapers/nave-veyxara.webp'
+  },
+  {
+    id: 'angel-penitente',
+    title: 'Angel Penitente',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/angel-penitente.webp',    
+    downloadUrl: '/wallpapers/angel-penitente.webp'
+  },
+  {
+    id: 'tecnologia-futuro',
+    title: 'La tecnologia en una mano',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/tecnologia-futuro.webp',    
+    downloadUrl: '/wallpapers/tecnologia-futuro.webp'
+  },
+  {
+    id: 'el-futuro',
+    title: 'La IA segun Veyxara',
+    category: 'Desktop', 
+    resolution: '3840x2160 (4K)',
+    aspectRatio: '16:9',
+    image: '/wallpapers/el-futuro.webp',    
+    downloadUrl: '/wallpapers/el-futuro.webp'
+  },
+  {
+    id: 'guardian-estratega',
+    title: 'El Guardian',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/guardian-estratega.webp',    
+    downloadUrl: '/wallpapers/guardian-estratega.webp'
+  },
 ];
