@@ -8,7 +8,7 @@ image: "/images/LAPS/LAPS.jpeg"
 pdfUrl: "/docs/instalar-configurar-laps.pdf"
 ---
 
-> **Autor:** SYSARMOR TECH <br />
+> **Autor:** Veyxara Core <br />
 > **Enfoque:** Infraestructura, Operación, Seguridad e Innovación <br />
 
 ---

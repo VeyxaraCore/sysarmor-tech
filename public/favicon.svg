@@ -1,44 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <!-- Gradientes sólidos originales de las cintas -->
-    <radialGradient id="amber-core" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#FFE082" />
-      <stop offset="30%" stop-color="#FF9800" />
-      <stop offset="70%" stop-color="#F57C00" />
-      <stop offset="100%" stop-color="#E65100" />
-    </radialGradient>
+    <!-- Gradiente 1: Ámbar Neón / Oro Ardiente -->
+    <linearGradient id="amberTubeUltra" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d94600" />
+      <stop offset="35%" stop-color="#ff6b00" />
+      <stop offset="70%" stop-color="#ffb703" />
+      <stop offset="100%" stop-color="#fffbeb" />
+    </linearGradient>
 
-    <radialGradient id="blue-core" cx="65%" cy="70%" r="70%">
-      <stop offset="0%" stop-color="#80D8FF" />
-      <stop offset="30%" stop-color="#0066FF" />
-      <stop offset="75%" stop-color="#0039CB" />
-      <stop offset="100%" stop-color="#001252" />
-    </radialGradient>
+    <!-- Gradiente 2: Cian Eléctrico / Turquesa Láser -->
+    <linearGradient id="cyanTubeUltra" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066ff" />
+      <stop offset="35%" stop-color="#00d2ff" />
+      <stop offset="70%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#f0fdfa" />
+    </linearGradient>
 
-    <!-- Fondo Oscuro Circular Sólido -->
-    <radialGradient id="bg-dark-sphere" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#0F172A" />
-      <stop offset="70%" stop-color="#0A0F1D" />
-      <stop offset="100%" stop-color="#020617" />
-    </radialGradient>
+    <!-- Sombra suave para dar profundidad al cruce -->
+    <filter id="shadow3D" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="-4" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.7" />
+    </filter>
   </defs>
 
-  <!-- Fondo Circular Oscuro (Sin borde gris) -->
-  <circle cx="256" cy="256" r="236" fill="url(#bg-dark-sphere)" />
+  <!-- Contenedor Base Squircle (Gris Carbón Oscuro Puro) -->
+  <rect x="0" y="0" width="512" height="512" rx="112" ry="112" fill="#090d16" />
 
-  <!-- Cinta Ámbar / Naranja (Forma original limpia, sin filtros) -->
-  <path d="M 238,82 
-C 142,98 92,172 102,272 
-C 112,362 178,430 262,430 
-C 198,400 168,340 172,270 
-C 180,185 242,130 312,100 
-C 282,86 258,82 238,82 Z" fill="url(#amber-core)" />
+  <!-- Barra 1: Ámbar Neón (X grande, aprovechando espacio y SIN CLIP) -->
+  <g filter="url(#shadow3D)">
+    <path d="M 96 416 L 416 96" stroke="url(#amberTubeUltra)" stroke-width="132" stroke-linecap="round" />
+    <path d="M 96 416 L 416 96" stroke="#ffffff" stroke-width="24" stroke-linecap="round" opacity="0.85" />
+  </g>
 
-  <!-- Cinta Azul Cobalto (Forma original limpia, sin filtros) -->
-  <path d="M 274,430 
-C 370,414 420,340 410,240 
-C 400,150 334,82 250,82 
-C 314,112 344,172 340,242 
-C 332,327 270,382 200,412 
-C 230,426 254,430 274,430 Z" fill="url(#blue-core)" />
+  <!-- Barra 2: Cian Eléctrico -->
+  <g filter="url(#shadow3D)">
+    <path d="M 96 96 L 416 416" stroke="url(#cyanTubeUltra)" stroke-width="132" stroke-linecap="round" />
+    <path d="M 96 96 L 416 416" stroke="#ffffff" stroke-width="24" stroke-linecap="round" opacity="0.85" />
+  </g>
 </svg>

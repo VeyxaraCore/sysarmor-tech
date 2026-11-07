@@ -1,0 +1,144 @@
+---
+// src/components/CommandPalette.astro
+import { getDynamicSearchIndex } from '../data/searchIndex';
+
+const rawIndex = await getDynamicSearchIndex();
+const serializedIndex = JSON.stringify(rawIndex);
+---
+
+<div id="cmd-backdrop" class="fixed inset-0 z-50 hidden bg-[#071426]/85 backdrop-blur-md flex items-start justify-center pt-20 px-4">
+  <div class="w-full max-w-xl bg-[#071426] border border-[#00CFFF]/40 rounded-xl shadow-2xl overflow-hidden text-[#E8EEF5]">
+    
+    <!-- Input de Búsqueda -->
+    <div class="flex items-center px-4 py-3.5 border-b border-[#E8EEF5]/10">
+      <svg class="w-5 h-5 text-[#00CFFF] mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <input 
+        id="cmd-input" 
+        type="text" 
+        placeholder="Busca artículos, herramientas, Azure, Intune, AD Connect..." 
+        class="w-full bg-transparent text-[#E8EEF5] placeholder-[#E8EEF5]/40 focus:outline-none text-sm font-sans"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="cmd-close-btn" class="text-[10px] font-mono bg-[#E8EEF5]/10 hover:bg-[#E8EEF5]/20 px-2 py-1 rounded text-[#E8EEF5]/80 shrink-0 cursor-pointer">ESC</button>
+    </div>
+
+    <!-- Título de sección -->
+    <div class="px-3 pt-3 pb-1">
+      <div id="cmd-section-title" class="text-[11px] font-mono text-[#00CFFF] uppercase tracking-wider px-2">
+        Sugerencias e Índice General
+      </div>
+    </div>
+
+    <!-- Resultados -->
+    <div id="cmd-results" class="p-2 max-h-72 overflow-y-auto space-y-1 font-sans">
+      <!-- Renderizado en cliente -->
+    </div>
+
+    <!-- Footer -->
+    <div class="px-4 py-2.5 bg-[#071426]/90 border-t border-[#E8EEF5]/10 flex items-center justify-between text-[11px] text-[#E8EEF5]/50">
+      <span>Usa <kbd class="px-1 py-0.5 bg-[#E8EEF5]/15 rounded text-[#E8EEF5] font-mono">Ctrl + K</kbd> para buscar</span>
+      <span class="text-[#00CFFF] font-mono font-semibold">Veyxara Engine</span>
+    </div>
+
+  </div>
+</div>
+
+<script define:vars={{ serializedIndex }}>
+  const searchIndex = JSON.parse(serializedIndex);
+
+  function normalize(str) {
+    return str ? str.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+  }
+
+  const backdrop = document.getElementById('cmd-backdrop');
+  const input = document.getElementById('cmd-input');
+  const resultsContainer = document.getElementById('cmd-results');
+  const sectionTitle = document.getElementById('cmd-section-title');
+  const closeBtn = document.getElementById('cmd-close-btn');
+
+  function renderList(items, isSearching = false) {
+    if (!resultsContainer) return;
+
+    if (sectionTitle) {
+      sectionTitle.textContent = isSearching ? `Resultados encontrados (${items.length})` : 'Sugerencias e Índice General';
+    }
+
+    if (items.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="py-10 px-4 text-center">
+          <p class="text-sm text-[#E8EEF5]/80 font-medium">No se encontraron registros</p>
+          <p class="text-xs text-[#E8EEF5]/40 mt-1 font-mono">Prueba buscando términos técnicos como "azure", "intune", "windows" o "vlsm"</p>
+        </div>`;
+      return;
+    }
+
+    resultsContainer.innerHTML = items.map(item => {
+      let badgeStyle = 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30';
+      if (item.category === 'blog') badgeStyle = 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+      if (item.category === 'wallpaper') badgeStyle = 'bg-purple-500/10 text-purple-400 border-purple-500/30';
+
+      return `
+        <a href="${item.path}" class="flex items-center justify-between p-2.5 rounded-lg hover:bg-[#00CFFF]/15 border border-transparent hover:border-[#00CFFF]/30 transition-all group block">
+          <div class="min-w-0 pr-2">
+            <div class="text-sm font-semibold text-[#E8EEF5] group-hover:text-[#00CFFF] truncate">
+              ${item.title}
+            </div>
+            <div class="text-xs text-[#E8EEF5]/60 mt-0.5 truncate">${item.description}</div>
+          </div>
+          <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${badgeStyle} shrink-0">
+            ${item.category}
+          </span>
+        </a>
+      `;
+    }).join('');
+  }
+
+  renderList(searchIndex, false);
+
+  input?.addEventListener('input', (e) => {
+    const query = normalize(e.target.value.trim());
+
+    if (!query) {
+      renderList(searchIndex, false);
+      return;
+    }
+
+    const filtered = searchIndex.filter(item => {
+      return normalize(item.content).includes(query);
+    });
+
+    renderList(filtered, true);
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (backdrop) {
+        const isHidden = backdrop.classList.toggle('hidden');
+        if (!isHidden) {
+          input.value = '';
+          renderList(searchIndex, false);
+          setTimeout(() => input?.focus(), 50);
+        }
+      }
+    }
+    
+    if ((e.key === 'Escape' || e.key === 'Esc') && backdrop && !backdrop.classList.contains('hidden')) {
+      e.preventDefault();
+      backdrop.classList.add('hidden');
+    }
+  }, true);
+
+  backdrop?.addEventListener('click', (e) => {
+    if (e.target === backdrop) backdrop.classList.add('hidden');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    backdrop?.classList.add('hidden');
+  });
+</script>

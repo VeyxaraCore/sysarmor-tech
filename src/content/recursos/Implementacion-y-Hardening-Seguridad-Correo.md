@@ -8,7 +8,7 @@ image: "/images/Asegurar_Correo/Correo.jpeg"
 pdfUrl: "/docs/Hardening-Correo-SPF-DKIM-Y-DMARC.pdf"
 ---
 
-> **Autor:** SYSARMOR TECH  
+> **Autor:** Veyxara Core
 > **Enfoque:** Ciberseguridad Enterprise, Identidad, Infraestructura Cloud y Protección de Mensajería  
 
 ---

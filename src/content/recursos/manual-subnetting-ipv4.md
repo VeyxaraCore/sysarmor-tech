@@ -9,7 +9,7 @@ image: "/images/subnetting/subnetting_blog.jpeg"
 pdfUrl: "/blog/manual-subnetting-ipv4"
 ---
 
-> **Autor:** SYSARMOR TECH  
+> **Autor:** Veyxara Core 
 > **Enfoque:** Infraestructura, Redes, Operación y Optimización  
 
 ---

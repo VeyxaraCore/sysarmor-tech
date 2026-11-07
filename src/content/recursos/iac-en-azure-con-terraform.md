@@ -7,7 +7,7 @@ author: "Alfredo Arévalo"
 isFeatured: true
 image: "/images/iac-azure-terraform/iac1.jpeg"
 pdfUrl: "/docs/iac-en-azure-con-terraform.pdf"
-tags: ["Terraform", "Infrastructure as Code", "Azure", "DevOps", "SysArmor Tech"]
+tags: ["Terraform", "Infrastructure as Code", "Azure", "DevOps", "Veyxara Core"]
 ---
 
 > **Enfoque técnico:** Infraestructura, Operación, Automatización y Arquitectura Limpia bajo estándares profesionales.

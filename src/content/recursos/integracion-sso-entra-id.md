@@ -8,7 +8,7 @@ image: "/images/SAML/SAML_SSO.jpeg"
 pdfUrl: "/docs/integracion-sso-entra-id.pdf"
 ---
 
-> **Autor:** SYSARMOR TECH <br />
+> **Autor:** Veyxara Core <br />
 > **Enfoque:** Infraestructura, Operación, Seguridad e Innovación <br />
 
 ---

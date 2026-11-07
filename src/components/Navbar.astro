@@ -4,88 +4,104 @@
 
 <header class="sticky top-0 z-50 h-[76px] w-full bg-[#0d1527] border-b border-slate-800">
   <nav class="w-full h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-    <!-- LOGO CORPORATIVO CON ISOTIPO CIAN Y BORDE ORBITAL GIRATORIO SUTIL -->
-    <a href="/" class="flex items-center gap-3.5 py-1 group">
-      
-      <!-- Contenedor del Borde Orbital -->
-      <div class="relative h-11 w-11 sm:h-12 sm:w-12 rounded-full p-[1.5px] overflow-hidden flex items-center justify-center flex-shrink-0 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-        
-        <!-- Luz en rotación ultra-lenta (12s) sin impacto en CPU -->
-        <div class="absolute inset-[-100%] animate-[spin_12s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_240deg,rgba(6,182,212,0.8)_360deg)] opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-        <!-- Máscara interna para preservar el fondo exacto #0d1527 -->
-        <div class="relative h-full w-full rounded-full bg-[#0d1527] overflow-hidden flex items-center justify-center">
-          <img 
-            src="/images/logo-navbar.webp" 
-            srcset="/images/logo-navbar.webp 140w"
-            sizes="74px"
-            alt="Veyxara Core Logo" 
-            width="74"
-            height="74"
-            loading="eager"
-            fetchpriority="high"
-            class="h-full w-full object-cover scale-105 transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-
+    <!-- LOGO CORPORATIVO VECTORIAL -->
+    <a href="/" class="flex items-center gap-4 py-1">
+      <div class="h-12 w-12 sm:h-[56px] sm:w-[56px] flex items-center justify-center flex-shrink-0">
+        <img 
+          src="/favicon.svg" 
+          alt="Nexycor Core Logo" 
+          width="56"
+          height="56"
+          loading="eager"
+          fetchpriority="high"
+          class="h-full w-full object-contain"
+        />
       </div>
       
-      <!-- Texto equilibrado con el logo (Monospace Tech con acento Cian) -->
-      <span class="font-mono font-black tracking-[0.18em] text-lg sm:text-2xl uppercase inline-flex items-center">
-        <span class="text-white">VEYXARA</span>
-        <span class="text-cyan-400 ml-2">CORE</span>
+      <span class="font-mono font-black tracking-wide text-xl sm:text-2xl md:text-[26px] uppercase inline-flex items-center">
+        <span class="text-white">
+          VEY<span class="inline-block text-cyan-400 scale-135 mx-1">X</span>ARA
+        </span>
+        <span class="text-amber-400 ml-2">CORE</span>
       </span>
     </a>
 
     <!-- Menú Desktop -->
-    <div class="hidden md:flex items-center gap-7 text-slate-300 font-medium">
+    <div class="hidden md:flex items-center gap-6 text-slate-300 font-medium">
       <a href="/#trayectoria" class="group relative hover:text-white transition-colors duration-300">
         Trayectoria
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a href="/#enfoque-tecnico" class="group relative hover:text-white transition-colors duration-300">
         Enfoque Técnico
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a href="/#proyectos" class="group relative hover:text-white transition-colors duration-300">
         Casos Técnicos
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a href="/blog" class="group relative hover:text-white transition-colors duration-300">
         Blog
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a href="/#contacto" class="group relative hover:text-white transition-colors duration-300">
         Contacto
-        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
       </a>
-      
-      <a href="/tools" class="px-6 py-2.5 rounded-md bg-cyan-500 hover:bg-cyan-400 text-[#020617] font-bold transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+
+      <!-- BOTÓN DE BÚSQUEDA CTRL+K (DESKTOP) -->
+      <button 
+        id="open-cmd-desktop"
+        type="button" 
+        class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-400 hover:text-cyan-400 transition-all text-xs font-mono group"
+        aria-label="Buscar en Veyxara"
+      >
+        <svg class="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <span>Buscar...</span>
+        <kbd class="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-[10px] text-slate-400 font-mono">Ctrl K</kbd>
+      </button>
+
+      <a href="/tools" class="px-6 py-2.5 rounded-md bg-amber-400 hover:bg-amber-500 text-[#020617] font-bold transition-all shadow-[0_0_15px_rgba(251,191,36,0.3)]">
         Herramientas
       </a>
     </div>
 
-    <!-- Botón Hamburguesa Móvil -->
-    <button id="sys-menu-btn" type="button" class="md:hidden text-white p-2 focus:outline-none transition-transform active:scale-95" aria-label="Abrir menú">
-      <svg id="sys-menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16 M4 12h16 M17 18h-13" />
-      </svg>
-    </button>
+    <!-- Contenedor Acciones Móvil -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button 
+        id="open-cmd-mobile"
+        type="button"
+        class="p-2 text-slate-300 hover:text-cyan-400 focus:outline-none transition-transform active:scale-95"
+        aria-label="Abrir buscador"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </button>
+
+      <button id="sys-menu-btn" type="button" class="text-white p-2 focus:outline-none transition-transform active:scale-95" aria-label="Abrir menú">
+        <svg id="sys-menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16 M4 12h16 M17 18h-13" />
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <!-- Menú Desplegable Móvil -->
-  <div id="sys-mobile-dropdown" class="hidden md:hidden absolute top-[76px] inset-x-0 bg-[#070b12]/95 bg-[radial-gradient(circle_at_50%_10%,rgba(6,182,212,0.12)_0%,transparent_50%),linear-gradient(to_right,rgba(51,65,85,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.3)_1px,transparent_1px)] bg-[size:100%_100%,2rem_2rem,2rem_2rem] h-[calc(100vh-120px)] overflow-y-auto border-b border-cyan-500/20 px-6 py-4 flex-col justify-between text-lg text-center z-50 shadow-2xl backdrop-blur-md">
+  <div id="sys-mobile-dropdown" class="hidden md:hidden absolute top-[76px] inset-x-0 bg-[#070b12]/95 bg-[radial-gradient(circle_at_50%_10%,rgba(251,191,36,0.12)_0%,transparent_50%),linear-gradient(to_right,rgba(51,65,85,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.3)_1px,transparent_1px)] bg-[size:100%_100%,2rem_2rem,2rem_2rem] h-[calc(100vh-120px)] overflow-y-auto border-b border-amber-500/20 px-6 py-4 flex-col justify-between text-lg text-center z-50 shadow-2xl backdrop-blur-md">
     
     <div class="flex flex-col gap-1.5">
-      <a href="/#trayectoria" class="sys-link text-slate-200 hover:text-cyan-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-cyan-400">Trayectoria</a>
-      <a href="/#enfoque-tecnico" class="sys-link text-slate-200 hover:text-cyan-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-cyan-400">Enfoque Técnico</a>
-      <a href="/#proyectos" class="sys-link text-slate-200 hover:text-cyan-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-cyan-400">Casos Técnicos</a>
-      <a href="/blog" class="sys-link text-slate-200 hover:text-cyan-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-cyan-400">Blog</a>
-      <a href="/#contacto" class="sys-link text-slate-200 hover:text-cyan-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-cyan-400">Contacto</a>
+      <a href="/#trayectoria" class="sys-link text-slate-200 hover:text-amber-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-amber-400">Trayectoria</a>
+      <a href="/#enfoque-tecnico" class="sys-link text-slate-200 hover:text-amber-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-amber-400">Enfoque Técnico</a>
+      <a href="/#proyectos" class="sys-link text-slate-200 hover:text-amber-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-amber-400">Casos Técnicos</a>
+      <a href="/blog" class="sys-link text-slate-200 hover:text-amber-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-amber-400">Blog</a>
+      <a href="/#contacto" class="sys-link text-slate-200 hover:text-amber-400 hover:bg-slate-800/40 py-2.5 px-4 rounded-lg transition-all border-l-2 border-transparent hover:border-amber-400">Contacto</a>
     </div>
 
     <div class="pt-3 pb-4 border-t border-slate-800/80 mt-2 flex-shrink-0">
-      <a href="/tools" class="sys-link block w-full py-3 px-4 rounded-xl bg-cyan-500 text-[#020617] font-bold text-base hover:bg-cyan-400 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+      <a href="/tools" class="sys-link block w-full py-3 px-4 rounded-xl bg-amber-400 text-[#020617] font-bold text-base hover:bg-amber-500 transition-all shadow-[0_0_15px_rgba(251,191,36,0.3)]">
         Herramientas
       </a>
     </div>
@@ -97,6 +113,24 @@
     const btn = document.getElementById('sys-menu-btn');
     const menu = document.getElementById('sys-mobile-dropdown');
     const icon = document.getElementById('sys-menu-icon');
+
+    const btnCmdDesktop = document.getElementById('open-cmd-desktop');
+    const btnCmdMobile = document.getElementById('open-cmd-mobile');
+
+    const toggleCommandPalette = () => {
+      const backdrop = document.getElementById('cmd-backdrop');
+      const input = document.getElementById('cmd-input');
+      
+      if (backdrop) {
+        backdrop.classList.remove('hidden');
+        if (input) {
+          input.focus();
+        }
+      }
+    };
+
+    btnCmdDesktop?.addEventListener('click', toggleCommandPalette);
+    btnCmdMobile?.addEventListener('click', toggleCommandPalette);
 
     if (btn && menu && icon) {
       const freshBtn = btn.cloneNode(true);
@@ -110,9 +144,9 @@
         menu.classList.toggle('flex');
 
         if (isOpen) {
-          freshIconElement!.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16 M4 12h16 M17 18h-13" />`;
+          freshIconElement.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16 M4 12h16 M17 18h-13" />`;
         } else {
-          freshIconElement!.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6 M6 6l12 12" />`;
+          freshIconElement.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6 M6 6l12 12" />`;
         }
       });
 

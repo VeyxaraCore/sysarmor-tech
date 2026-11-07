@@ -8,7 +8,7 @@ image: "/images/dMSA/dMSA_blog.jpeg"
 pdfUrl: "/docs/implementacion-cuentas-dmsa.pdf"
 ---
 
-> **Autor:** SYSARMOR TECH  
+> **Autor:** Veyxara Core 
 > **Enfoque:** Infraestructura, Operación, Seguridad e Innovación  
 
 ---

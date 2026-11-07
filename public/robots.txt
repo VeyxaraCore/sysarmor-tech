@@ -1,4 +1,15 @@
+# Reglas generales para todos los buscadores
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /private/
 
+# Optimización específica para Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+Allow: /images/
+
+# Indicación de mapas del sitio
 Sitemap: https://veyxara.com/sitemap-index.xml

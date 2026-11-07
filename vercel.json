@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/wallpapers/veyx-:slug(.*)",
+      "destination": "/wallpapers/:slug",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
