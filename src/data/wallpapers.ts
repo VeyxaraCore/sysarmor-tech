@@ -470,4 +470,13 @@ export const wallpapers: Wallpaper[] = [
     image: '/wallpapers/guardian-estratega.webp',    
     downloadUrl: '/wallpapers/guardian-estratega.webp'
   },
+  {
+    id: 'thor-ragnarok',
+    title: 'Thor Ragnarok',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/thor-ragnarok.webp',    
+    downloadUrl: '/wallpapers/thor-ragnarok.webp'
+  },
 ];
