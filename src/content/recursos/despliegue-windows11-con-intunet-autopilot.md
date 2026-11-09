@@ -1,4 +1,4 @@
----
+﻿---
 title: "Despliegue y Provisionamiento Zero-Touch de Windows 11 con Windows Autopilot y Microsoft Intune"
 description: "Guía técnica para la extracción de HardwareID, importación de hashes en Microsoft Intune, configuración de perfiles User-Driven y automatización de despliegues OOBE."
 blogCategory: "Infraestructura TI"
@@ -147,7 +147,7 @@ shutdown /r /t 0
 
 ```
 
-* **Resultado Esperado:** La pantalla de bienvenida de Windows omitirá la creación de cuentas personales y presentará la interfaz corporativa de inicio de sesión (*Branding de SYSARMOR TECH / Microsoft Entra ID*).
+* **Resultado Esperado:** La pantalla de bienvenida de Windows omitirá la creación de cuentas personales y presentará la interfaz corporativa de inicio de sesión (*Branding de Veyxara Core / Microsoft Entra ID*).
 
 ### Auditoría y Trazabilidad en el Cliente
 

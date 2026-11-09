@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
+﻿import type { APIRoute } from 'astro';
 import { SecurityOrchestrator } from '../../utils/securityOrchestrator';
 
 export const GET: APIRoute = async ({ url }) => {
-  const target = url.searchParams.get('target') || 'sysarmortech.com';
+  const target = url.searchParams.get('target') || 'veyxara.com';
 
   try {
     const orchestrator = new SecurityOrchestrator(target);

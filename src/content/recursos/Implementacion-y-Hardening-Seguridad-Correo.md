@@ -1,4 +1,4 @@
----
+﻿---
 title: "Implementación y Hardening de Seguridad de Correo y Autenticación de Dominio (SPF, DKIM y DMARC)"
 description: "Aprende a configurar e implementar SPF, DKIM y DMARC en plataformas de correo cloud para neutralizar el domain spoofing y llevar la directiva a un bloqueo estricto (p=reject)."
 pubDate: 2026-08-27
@@ -17,7 +17,7 @@ pdfUrl: "/docs/Hardening-Correo-SPF-DKIM-Y-DMARC.pdf"
 
 En el ecosistema de ciberseguridad moderno, el correo electrónico continúa siendo el vector primario de ataque para campañas de Phishing, suplantación de identidad (*Domain Spoofing*) y compromiso de cuentas empresariales (*BEC - Business Email Compromise*). La falta de validación criptográfica y directivas de alineación en un dominio corporativo permite a ciberdelincuentes forjar cabeceras SMTP y enviar mensajes fraudulentos a nombre de la organización.
 
-Este documento establece el procedimiento técnico formal de SysArmor Tech para auditar, diseñar e implementar una arquitectura tripartita de autenticación de mensajes utilizando SPF (*Sender Policy Framework*), DKIM (*DomainKeys Identified Mail*) y DMARC (*Domain-based Message Authentication, Reporting, and Conformance*). El objetivo es llevar la directiva de dominio desde una postura inicial de monitoreo hasta el bloqueo absoluto en el borde (`p=reject`), blindando la reputación del dominio corporativo.
+Este documento establece el procedimiento técnico formal de Veyxara Core para auditar, diseñar e implementar una arquitectura tripartita de autenticación de mensajes utilizando SPF (*Sender Policy Framework*), DKIM (*DomainKeys Identified Mail*) y DMARC (*Domain-based Message Authentication, Reporting, and Conformance*). El objetivo es llevar la directiva de dominio desde una postura inicial de monitoreo hasta el bloqueo absoluto en el borde (`p=reject`), blindando la reputación del dominio corporativo.
 
 ---
 
@@ -35,7 +35,7 @@ Este documento establece el procedimiento técnico formal de SysArmor Tech para 
 | Componente | Requisito Técnico / Estándar | Función en la Metodología |
 | :--- | :--- | :--- |
 | **Plataforma de Correo** | Servicio de mensajería cloud (ej. Microsoft 365 / Exchange Online) | Procesamiento de correo saliente/entrante y generación de llaves de firma criptográfica DKIM. |
-| **Dominio Corporativo** | Dominio propio activo (ej. `sysarmortech.com`) | Zona DNS pública objetivo para la inserción de registros TXT y CNAME. |
+| **Dominio Corporativo** | Dominio propio activo (ej. `veyxara.com`) | Zona DNS pública objetivo para la inserción de registros TXT y CNAME. |
 | **Acceso a Zona DNS** | Consola de administración con permisos de edición (ej. Cloudflare, Spaceship, GoDaddy) | Aprovisionamiento y control de registros SPF, CNAMEs de DKIM y directiva DMARC. |
 | **Cliente de Auditoría** | Consola PowerShell / Módulo de gestión y herramientas web | Validación de registros en propagación y análisis forense de cabeceras. |
 
@@ -67,7 +67,7 @@ El registro SPF es un tipo de registro TXT del DNS que indica de forma explícit
 v=spf1 include:spf.protection.outlook.com -all
 ```
 
-> **Nota técnica — Hardening (SysArmor Tech):**
+> **Nota técnica — Hardening (Veyxara Core):**
 > *   **Sintaxis estricta:** Asegúrese de que el registro comience estrictamente con `v=spf1` y termine con el calificador de rechazo `-all` (o `~all` solo en fases transitorias).
 > *   **Límite de consultas DNS:** El árbol de resolución no debe superar las 10 consultas recursivas para evitar errores de validación (`permerror`) según el RFC 7208.
 > *   **Calificador de fallo:** Se fuerza el uso de `-all` (*Hard Fail*) en sustitución de `~all` (*Soft Fail*) para instruir de forma mandataria a las pasarelas receptoras que desechen cualquier origen no declarado.
@@ -82,14 +82,14 @@ Los sistemas de correo modernos requieren la implementación de dos selectores r
 
 | Nombre / Subdominio | Tipo | Valor / Destino Target |
 | :--- | :--- | :--- |
-| `selector1._domainkey` | CNAME | `selector1-sysarmortech-com._domainkey.tenant.onmicrosoft.com` |
-| `selector2._domainkey` | CNAME | `selector2-sysarmortech-com._domainkey.tenant.onmicrosoft.com` |
+| `selector1._domainkey` | CNAME | `selector1-VeyxaraCore-com._domainkey.tenant.onmicrosoft.com` |
+| `selector2._domainkey` | CNAME | `selector2-VeyxaraCore-com._domainkey.tenant.onmicrosoft.com` |
 
 3. Una vez confirmada la propagación correcta de los registros CNAME en el DNS, ejecute la activación del firmado criptográfico mediante la consola de automatización (ejemplo mediante PowerShell con Exchange Online):
 
 ```powershell
-Connect-ExchangeOnline -UserPrincipalName admin@sysarmortech.com 
-New-DkimSigningConfig -DomainName "sysarmortech.com" -Enabled $true
+Connect-ExchangeOnline -UserPrincipalName admin@veyxara.com 
+New-DkimSigningConfig -DomainName "veyxara.com" -Enabled $true
 ```
 
 > **Nota técnica:** Cada dominio debe tener al menos una clave pública activa en DNS. Se recomienda rotar claves periódicamente y usar longitudes mínimas de 2048 bits.
@@ -101,19 +101,19 @@ Para mitigar riesgos de interrupción operativa o falsos positivos en flujos de 
 #### Fase 3.1: Fase de Monitoreo y Auditoría (`p=none`)
 Permite recolectar reportes agregados XML (RUA) para identificar fuentes de envío legítimas o desalineadas sin afectar la entrega del correo:
 ```text
-v=DMARC1; p=none; rua=mailto:dmarc-reports@sysarmortech.com; pct=100; sp=none; adkim=r; aspf=r;
+v=DMARC1; p=none; rua=mailto:dmarc-reports@veyxara.com; pct=100; sp=none; adkim=r; aspf=r;
 ```
 
 #### Fase 3.2: Fase de Aislamiento Progresivo (`p=quarantine`)
 Una vez auditadas y corregidas todas las fuentes corporativas, se fuerza el aislamiento de mensajes no autenticados directamente hacia la bandeja de correo no deseado (*Spam/Junk*):
 ```text
-v=DMARC1; p=quarantine; pct=100; rua=mailto:dmarc-reports@sysarmortech.com; ruf=mailto:dmarc-failures@sysarmortech.com; sp=quarantine;
+v=DMARC1; p=quarantine; pct=100; rua=mailto:dmarc-reports@veyxara.com; ruf=mailto:dmarc-failures@veyxara.com; sp=quarantine;
 ```
 
 #### Fase 3.3: Fase de Enforcement y Hardening Total (`p=reject`)
 Estado final de máxima seguridad Enterprise. Las pasarelas receptoras tienen la orden explícita de descartar en el borde (*SMTP drop*) cualquier intento de suplantación sobre el dominio corporativo:
 ```text
-v=DMARC1; p=reject; pct=100; rua=mailto:dmarc-reports@sysarmortech.com; ruf=mailto:dmarc-failures@sysarmortech.com; sp=reject; adkim=s; aspf=s;
+v=DMARC1; p=reject; pct=100; rua=mailto:dmarc-reports@veyxara.com; ruf=mailto:dmarc-failures@veyxara.com; sp=reject; adkim=s; aspf=s;
 ```
 
 ---
@@ -143,14 +143,14 @@ Ejecute los siguientes cmdlets de resolución DNS para comprobar la salud de los
 
 ```powershell
 # 1. Validar la existencia y sintaxis del registro SPF
-Resolve-DnsName -Name "sysarmortech.com" -Type TXT | Where-Object Strings -like "*v=spf1*"
+Resolve-DnsName -Name "veyxara.com" -Type TXT | Where-Object Strings -like "*v=spf1*"
 
 # 2. Validar la correcta resolución de los selectores DKIM CNAME
-Resolve-DnsName -Name "selector1._domainkey.sysarmortech.com" -Type CNAME
-Resolve-DnsName -Name "selector2._domainkey.sysarmortech.com" -Type CNAME
+Resolve-DnsName -Name "selector1._domainkey.veyxara.com" -Type CNAME
+Resolve-DnsName -Name "selector2._domainkey.veyxara.com" -Type CNAME
 
 # 3. Validar la directiva DMARC activa en el subdominio de control
-Resolve-DnsName -Name "_dmarc.sysarmortech.com" -Type TXT
+Resolve-DnsName -Name "_dmarc.veyxara.com" -Type TXT
 ```
 
 ### 7.2. Validación en Destino y Cabeceras
@@ -158,9 +158,9 @@ Resolve-DnsName -Name "_dmarc.sysarmortech.com" -Type TXT
 Envíe un correo electrónico hacia una cuenta externa de control (ej. Gmail o buzones independientes) y analice el bloque `Authentication-Results` en el código fuente del mensaje (*Internet Headers*), el cual debe arrojar el siguiente resultado óptimo:
 
 ```text
-Authentication-Results: vf=pass (sender IP is X.X.X.X) smtp.mailfrom=sysarmortech.com; 
-                        dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=sysarmortech.com; 
-                        dkim=pass (signature verified) header.d=sysarmortech.com;
+Authentication-Results: vf=pass (sender IP is X.X.X.X) smtp.mailfrom=veyxara.com; 
+                        dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=veyxara.com; 
+                        dkim=pass (signature verified) header.d=veyxara.com;
 ```
 
 > **Recomendaciones operativas:**
@@ -172,4 +172,4 @@ Authentication-Results: vf=pass (sender IP is X.X.X.X) smtp.mailfrom=sysarmortec
 
 ## Conclusión Técnica e Impacto Operativo
 
-La implementación metódica y estructurada de SPF, DKIM y DMARC bajo los lineamientos de SysArmor Tech establece un perímetro impenetrable de identidad sobre la mensajería corporativa. Al transicionar los sistemas hacia una directiva estricta de rechazo (`p=reject`), se neutraliza de forma definitiva el riesgo de *Domain Spoofing*, se incrementa la reputación del dominio ante los principales proveedores de servicios de internet globales y se garantiza el cumplimiento normativo de los estándares internacionales de ciberseguridad para infraestructuras críticas.
+La implementación metódica y estructurada de SPF, DKIM y DMARC bajo los lineamientos de Veyxara Core establece un perímetro impenetrable de identidad sobre la mensajería corporativa. Al transicionar los sistemas hacia una directiva estricta de rechazo (`p=reject`), se neutraliza de forma definitiva el riesgo de *Domain Spoofing*, se incrementa la reputación del dominio ante los principales proveedores de servicios de internet globales y se garantiza el cumplimiento normativo de los estándares internacionales de ciberseguridad para infraestructuras críticas.

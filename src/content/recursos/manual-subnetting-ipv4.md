@@ -1,10 +1,10 @@
----
+﻿---
 title: "Manual de Subnetting IPv4: Guía Práctica y Método del Número Mágico"
 description: "Domina el direccionamiento IPv4, máscaras CIDR y calcula subredes de forma rápida con el método del número mágico y ejemplos reales."
 pubDate: 2026-08-30
 category: "Redes & Infraestructura"
 isFeatured: true
-author: "SYSARMOR TECH"
+author: "Veyxara Core"
 image: "/images/subnetting/subnetting_blog.jpeg"
 pdfUrl: "/blog/manual-subnetting-ipv4"
 ---

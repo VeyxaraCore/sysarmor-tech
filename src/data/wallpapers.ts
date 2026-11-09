@@ -12,6 +12,15 @@ export interface Wallpaper {
 
 export const wallpapers: Wallpaper[] = [
   {
+    id: 'emblema-veyxara',
+    title: 'Emblema Veyxara Portal Cibernético',
+    category: 'Desktop', 
+    resolution: '3840x2160 (4K)',
+    aspectRatio: '16:9',
+    image: '/wallpapers/emblema-veyxara.webp',
+    downloadUrl: '/wallpapers/emblema-veyxara.webp',
+  },
+  {
     id: 'leonidas-300',
     title: 'Desfiladero de las Termópilas',
     category: 'Desktop', 
@@ -19,6 +28,15 @@ export const wallpapers: Wallpaper[] = [
     aspectRatio: '16:9',
     image: '/wallpapers/leonidas-300.webp',
     downloadUrl: '/wallpapers/leonidas-300.webp',
+  },
+  {
+    id: 'bulldog',
+    title: 'Bulldog Cyberdog',
+    category: 'Mobile',
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/bulldog.webp',
+    downloadUrl: '/wallpapers/bulldog.webp',
   },
   {
     id: 'veyx-ataque-ddos',

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Implementación de Cuentas dMSA (Delegated Managed Service Accounts) en Windows Server 2025"
 description: "Aprende a configurar cuentas dMSA en Windows Server 2025 para vincular la identidad de servicios al hardware del host, eliminando contraseñas estáticas y mitigando Kerberoasting."
 pubDate: 2026-08-17
@@ -58,7 +58,7 @@ Este gráfico resume la evolución estratégica de las identidades de servicio d
 Para contrastar el comportamiento frente a dMSA, se crea primero una cuenta de servicio clásica desde un Controlador de Dominio con privilegios de Domain Admin:
 
 powershell
-New-ADUser -Name "svc_iis" -SamAccountName "svc_iis" -AccountPassword (Read-Host -AsSecureString "Ingrese contraseña") -Enabled $true -PasswordNeverExpires$true -Path "OU=Usuarios,DC=SysArmorTech,DC=com"
+New-ADUser -Name "svc_iis" -SamAccountName "svc_iis" -AccountPassword (Read-Host -AsSecureString "Ingrese contraseña") -Enabled $true -PasswordNeverExpires$true -Path "OU=Usuarios,DC=VeyxaraCore,DC=com"
 
 Validamos su creación en **Active Directory Users and Computers**:
 
@@ -66,7 +66,7 @@ Validamos su creación en **Active Directory Users and Computers**:
 
 ### Prueba de concepto con servicio local (NotepadSrv en EQUIPO10)
 
-1. En el servidor `EQUIPO10`, se asigna el derecho de *Log on as a service* (`secpol.msc`) a la cuenta `SYSARMORTECH01\svc_iis` para evitar el error 1297.
+1. En el servidor `EQUIPO10`, se asigna el derecho de *Log on as a service* (`secpol.msc`) a la cuenta `VeyxaraCore01\svc_iis` para evitar el error 1297.
 2. Se configura el servicio `NotepadSrv` para iniciar sesión con la cuenta creada.
 
 ![Configuración de servicio NotepadSrv](/images/dMSA/dMSA3.png)
@@ -83,7 +83,7 @@ Ejecutar en PowerShell con el módulo de Active Directory de Windows Server 2025
 
 powershell
 New-ADServiceAccount -CreateDelegatedServiceAccount -Name "iis_service_lab" `
-  -DNSHostName "iis_service_lab.SysArmorTech.com" `
+  -DNSHostName "iis_service_lab.veyxara.com" `
   -KerberosEncryptionType AES128,AES256
 
 
@@ -114,8 +114,8 @@ Para verificar la estructura interna del objeto en Active Directory mediante `ld
 3. Ir a **Connection** > **Bind...** y autenticarse con credenciales de Domain Admin.
 
 ### Navegación en el Árbol del Dominio:
-1. Seleccionar **View** > **Tree** y establecer el BaseDN (`DC=SysArmorTech,DC=com`).
-2. Desplegar el contenedor por defecto: `CN=Managed Service Accounts,DC=SysArmorTech,DC=com`.
+1. Seleccionar **View** > **Tree** y establecer el BaseDN (`DC=VeyxaraCore,DC=com`).
+2. Desplegar el contenedor por defecto: `CN=Managed Service Accounts,DC=VeyxaraCore,DC=com`.
 3. Seleccionar el objeto creado (`CN=iis_service_lab`).
 
 ![Inspección de atributos dMSA en ldp.exe](/images/dMSA/dMSA4.png)
@@ -145,7 +145,7 @@ Para utilizar la cuenta dMSA en un Application Pool de Internet Information Serv
 1. Abrir **IIS Manager** en `EQUIPO10`.
 2. Ir a **Application Pools** > Seleccionar **IIS_ServicePool** > **Advanced Settings**.
 3. En el campo **Identity**, seleccionar **Custom Account** e ingresar:
-    *   **User name:** `SYSARMORTECH\iis_service_lab$` *(Es indispensable incluir el sufijo `$`)*.
+    *   **User name:** `VeyxaraCore\iis_service_lab$` *(Es indispensable incluir el sufijo `$`)*.
     *   **Password:** Dejar en blanco.
 4. Iniciar o reiniciar el Application Pool. Si el estado cambia a **Started** sin solicitar contraseña manual, la dMSA está operando correctamente y la credencial ha sido delegada al host.
 
@@ -158,7 +158,7 @@ Anexo los comandos en PowerShell sobre cómo se podría automatizar el proceso d
 powershell
 Import-Module WebAdministration
 Set-ItemProperty -Path "IIS:\AppPools\IIS_ServicePool" -Name "processModel.identityType" -Value 3
-Set-ItemProperty -Path "IIS:\AppPools\IIS_ServicePool" -Name "processModel.userName" -Value "SYSARMORTECH\iis_service_lab$"
+Set-ItemProperty -Path "IIS:\AppPools\IIS_ServicePool" -Name "processModel.userName" -Value "VeyxaraCore\iis_service_lab$"
 Set-ItemProperty -Path "IIS:\AppPools\IIS_ServicePool" -Name "processModel.password" -Value ""
 Restart-WebAppPool -Name "IIS_ServicePool"
 

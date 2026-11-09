@@ -1,4 +1,4 @@
----
+﻿---
 title: "Guía Paso a Paso: Implementación de Windows LAPS en Windows Server 2025 y Windows 11"
 description: "Aprende a configurar Windows LAPS nativo en Active Directory, extender el esquema, delegar permisos de OU, aplicar GPOs y administrar contraseñas con PowerShell."
 pubDate: 2026-08-15
@@ -125,13 +125,13 @@ Update-LapsADSchema -Verbose
 <h3>1. Permitir Auto-Escritura al Equipo (Self-Permission)</h3>
 <p>Ejecuta el siguiente comando especificando la Unidad Organizativa donde se ubican los servidores o equipos de cómputo:</p>
 
-<pre><code>Set-LapsADComputerSelfPermission -Identity "OU=Servidores,DC=SysArmorTech,DC=com"
+<pre><code>Set-LapsADComputerSelfPermission -Identity "OU=Servidores,DC=VeyxaraCore,DC=com"
 </code></pre>
 
 <h3>2. Asignar Permiso de Lectura de Contraseñas Cifradas</h3>
 <p>Delega el acceso de lectura únicamente a los grupos de soporte o administración autorizados (ej. <code>Domain Admins</code> o un grupo RBAC dedicado):</p>
 
-<pre><code>Set-LapsADReadPasswordPermission -Identity "OU=Servidores,DC=SysArmorTech,DC=com" -AllowedPrincipals "Domain Admins"
+<pre><code>Set-LapsADReadPasswordPermission -Identity "OU=Servidores,DC=VeyxaraCore,DC=com" -AllowedPrincipals "Domain Admins"
 </code></pre>
 
 <p>
@@ -140,7 +140,7 @@ Update-LapsADSchema -Verbose
 
 <h3>3. Asignar Permiso de Forzado / Reseteo de Expiración</h3>
 
-<pre><code>Set-LapsADResetPasswordPermission -Identity "OU=Servidores,DC=SysArmorTech,DC=com" -AllowedPrincipals "Domain Admins"
+<pre><code>Set-LapsADResetPasswordPermission -Identity "OU=Servidores,DC=VeyxaraCore,DC=com" -AllowedPrincipals "Domain Admins"
 </code></pre>
 
 <p>

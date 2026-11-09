@@ -81,7 +81,7 @@ export default function CalculatorIPv6() {
     return groups.join(':');
   }
 
-  const handleCalculate = (e: Event) => {
+  const handleCalculate = (e: any) => {
     e.preventDefault();
     try {
       const [baseIpStr] = basePrefix.split('/');

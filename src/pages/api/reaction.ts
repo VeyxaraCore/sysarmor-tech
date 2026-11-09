@@ -1,4 +1,4 @@
-// src/pages/api/reaction.ts
+﻿// src/pages/api/reaction.ts
 import type { APIRoute } from 'astro';
 
 export const prerender = false;
@@ -23,7 +23,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const emoji = vote === 'like' ? '👍' : '👎';
-    const text = `${emoji} Nueva interacción en SysArmor Tech\n\nArtículo: ${articleTitle}\nVoto: ${vote === 'like' ? 'Útil' : 'No útil'}\nMotivo: ${reason || 'Sin motivo especificado'}`;
+    const text = `${emoji} Nueva interacción en Veyxara Core\n\nArtículo: ${articleTitle}\nVoto: ${vote === 'like' ? 'Útil' : 'No útil'}\nMotivo: ${reason || 'Sin motivo especificado'}`;
 
     const telegramRes = await fetch(`https://api.telegram.org/bot${FINAL_TOKEN}/sendMessage`, {
       method: 'POST',
@@ -50,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
   } catch (err) {
-    console.error('[SysArmor Server Error]', err);
+    console.error('[Veyxara Server Error]', err);
     return new Response(
       JSON.stringify({ success: false, error: 'Error interno procesando la petición.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }

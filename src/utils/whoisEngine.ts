@@ -1,4 +1,4 @@
-// src/utils/whoisEngine.ts
+﻿// src/utils/whoisEngine.ts
 export class WhoisEngine {
   private static ianaCache: { services: [string[], string[]][]; timestamp: number } | null = null;
 
@@ -29,7 +29,7 @@ export class WhoisEngine {
       const response = await fetch(endpoint, {
         headers: { 
           'Accept': 'application/json',
-          'User-Agent': 'SysArmorTech-WhoisClient/1.0'
+          'User-Agent': 'VeyxaraCore-WhoisClient/1.0'
         },
         signal: AbortSignal.timeout(6000)
       });
@@ -211,7 +211,7 @@ export class WhoisEngine {
   private async fallbackLookup(query: string): Promise<any> {
     try {
       const res = await fetch(`https://rdap.org/domain/${encodeURIComponent(query)}`, {
-        headers: { 'Accept': 'application/json', 'User-Agent': 'SysArmorTech-WhoisClient/1.0' },
+        headers: { 'Accept': 'application/json', 'User-Agent': 'VeyxaraCore-WhoisClient/1.0' },
         signal: AbortSignal.timeout(5000)
       });
 

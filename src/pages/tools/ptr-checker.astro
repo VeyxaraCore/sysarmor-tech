@@ -1,10 +1,10 @@
----
+﻿---
 // src/pages/tools/ptr-checker.astro
 import Layout from '../../layouts/Layout.astro';
 
-const pageTitle = "Verificador de Registros PTR (rDNS) | SysArmor Tech";
+const pageTitle = "Verificador de Registros PTR (rDNS) | Veyxara Core";
 const pageDescription = "Herramienta avanzada para la validación y resolución inversa de direcciones IPv4 e IPv6 a nombres de host canónicos (rDNS) para servidores perimetrales.";
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmortech.com').toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://veyxara.com').toString();
 ---
 
 <Layout 
@@ -14,8 +14,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmor
 >
     <!-- Datos estructurados SEO (Schema.org WebApplication) -->
     <slot slot="head">
-        <meta name="keywords" content="rDNS, registro PTR, DNS inverso, IPv6 ip6.arpa, in-addr.arpa, seguridad perimetral, SysArmor Tech" />
-        <meta name="author" content="SysArmor Tech Infrastructure Team" />
+        <meta name="keywords" content="rDNS, registro PTR, DNS inverso, IPv6 ip6.arpa, in-addr.arpa, seguridad perimetral, Veyxara Core" />
+        <meta name="author" content="Veyxara Core Infrastructure Team" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
@@ -27,14 +27,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmor
             {
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Verificador de Registros PTR (rDNS) - SysArmor Tech",
-              "url": "https://sysarmortech.com/tools/ptr-checker",
+              "name": "Verificador de Registros PTR (rDNS) - Veyxara Core",
+              "url": "https://veyxara.com/tools/ptr-checker",
               "applicationCategory": "DeveloperApplication",
               "operatingSystem": "All",
               "description": "Herramienta de diagnóstico de infraestructura para la resolución de DNS inverso en bloques IPv4 e IPv6.",
               "author": {
                 "@type": "Organization",
-                "name": "SysArmor Tech"
+                "name": "Veyxara Core"
               }
             }
         </script>

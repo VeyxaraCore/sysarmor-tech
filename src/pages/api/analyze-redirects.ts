@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+﻿import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -23,7 +23,7 @@ export const POST: APIRoute = async ({ request }) => {
           method: 'GET',
           redirect: 'manual',
           headers: {
-            'User-Agent': 'SysArmorTech-RedirectAnalyzer/1.0 (+https://sysarmortech.com)'
+            'User-Agent': 'VeyxaraCore-RedirectAnalyzer/1.0 (+https://veyxara.com)'
           }
         });
       } catch (err) {

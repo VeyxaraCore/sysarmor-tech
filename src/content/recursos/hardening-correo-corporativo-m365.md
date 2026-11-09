@@ -1,9 +1,9 @@
----
+﻿---
 title: "Hardening de Correo Corporativo en Microsoft 365: Guía Técnica con EOP y Defender"
 description: "Guía técnica para configurar el endurecimiento de correo en Microsoft 365 mediante Exchange Online Protection (EOP) y Microsoft Defender P1/P2."
 category: "Ciberseguridad"
 pubDate: "2026-08-19"
-author: "SYSARMOR TECH"
+author: "Veyxara Core"
 image: "/images/MS-Defender/MS-Defender.jpeg"
 pdfUrl: "/docs/hardening-correo-corporativo-m365.pdf"
 ---
@@ -91,7 +91,7 @@ Asegurar que **Spam ZAP** y **Phish ZAP** estén marcados como **Habilitados**. 
 1. En la política predeterminada, habilitar el **Filtro de tipos de archivos adjuntos comunes**.
 2. Verificar e incluir las siguientes extensiones bloqueadas de forma estricta:  
    `ace`, `ani`, `app`, `docm`, `exe`, `iso`, `jar`, `js`, `jse`, `vbe`, `vbs`, `ws`, `wsf`, `ps1`, `bat`, `cmd`, `hta`, `lnk`, `reg`, `scr`, `img`
-3. **Notificaciones:** Configurar alerta por correo al equipo técnico (`ti-soc@sysarmortech.com`) cuando se intercepte malware.
+3. **Notificaciones:** Configurar alerta por correo al equipo técnico (`ti-soc@veyxara.com`) cuando se intercepte malware.
 
 ![Edite la configuración de protección Anti-Malware](/images/MS-Defender/Defender5.png)
 
@@ -104,7 +104,7 @@ En esta sección se detallan las funcionalidades adicionales que se desbloquean 
 ### Anti-Phishing Avanzado (Impersonation Protection)
 A diferencia del filtro básico de EOP, el Plan 1/P2 permite:
 * **User Impersonation:** Proteger hasta 350 usuarios clave (CEO, CFO, TI) rastreando variaciones de su nombre completo en el remitente.
-* **Domain Impersonation:** Monitorear dominios propios y de socios para evitar ataques mediante *typosquatting* (ejemplo: `sysarmortech.co` vs `sysarmortech.com`).
+* **Domain Impersonation:** Monitorear dominios propios y de socios para evitar ataques mediante *typosquatting* (ejemplo: `veyxara.co` vs `veyxara.com`).
 * **Phishing Threshold (Umbral):** Ajustar la sensibilidad del motor heurístico IA a `3 - Aggressive`.
 * **Mailbox Intelligence:** Permite al sistema aprender los patrones habituales de comunicación entre empleados para detectar desvíos anómalos.
 
@@ -136,10 +136,10 @@ A diferencia del filtro básico de EOP, el Plan 1/P2 permite:
 
 ## PARTE 3: Pruebas de Laboratorio (Entorno EOP Actual)
 
-1. **Prueba de Filtro de Archivos:** Se envió un correo a la cuenta `CorreoLAB@SysarmorTech.onmicrosoft.com` con un archivo adjunto `.ps1` / `.exe`.  
+1. **Prueba de Filtro de Archivos:** Se envió un correo a la cuenta `CorreoLAB@VeyxaraCore.onmicrosoft.com` con un archivo adjunto `.ps1` / `.exe`.  
    * *Resultado esperado:* El correo es rechazado o enviado a cuarentena por la regla de *Common Attachments Filter*.
 2. **Prueba de Cadena EICAR:** Se envió a la misma cuenta una cadena EICAR (texto estándar de 68 caracteres usado para comprobar antivirus sin arriesgar el equipo) para validar el motor Anti-Malware.  
-   * *Resultado obtenido:* El correo fue rechazado y enviado a cuarentena por considerarse malware. Adicionalmente, se generó un correo de notificación automática enviado al equipo técnico (`ti-soc@sysarmortech.com`).
+   * *Resultado obtenido:* El correo fue rechazado y enviado a cuarentena por considerarse malware. Adicionalmente, se generó un correo de notificación automática enviado al equipo técnico (`ti-soc@veyxara.com`).
 
 ![Diagrama de Flujo de Filtrado de Correo Entrante](/images/MS-Defender/Defender6.png)
 
@@ -151,9 +151,9 @@ A diferencia del filtro básico de EOP, el Plan 1/P2 permite:
 
 ---
 
-## Alcance del Servicio SysArmorTech
+## Alcance del Servicio VeyxaraCore
 
-En **SysArmorTech** convertimos el licenciamiento de Microsoft en una postura real de ciberdefensa, aplicando configuraciones de endurecimiento técnico y alineación de identidad que fortalecen la seguridad del correo corporativo.
+En **VeyxaraCore** convertimos el licenciamiento de Microsoft en una postura real de ciberdefensa, aplicando configuraciones de endurecimiento técnico y alineación de identidad que fortalecen la seguridad del correo corporativo.
 
 ### Niveles de implementación
 

@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+﻿import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 
 export const prerender = false;
@@ -125,18 +125,18 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const cleanFileName = pdfFileName.replace(/ /g, '%20');
-    const fullPdfUrl = `https://sysarmortech.com/docs/${cleanFileName}`;
+    const fullPdfUrl = `https://veyxara.com/docs/${cleanFileName}`;
 
     // 6. Envío del correo electrónico
     await transporter.sendMail({
-      from: `"SysArmor Tech" <${smtpUser}>`,
+      from: `"Veyxara Core" <${smtpUser}>`,
       to: email,
       subject: `📄 Tu recurso técnico: ${articleTitle}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0f172a; color: #f8fafc; padding: 24px; border-radius: 12px;">
           <h2 style="color: #fbbf24; margin-bottom: 16px;">¡Hola! Aquí tienes la guía solicitada.</h2>
           <p style="font-size: 14px; line-height: 1.6; color: #cbd5e1;">
-            Gracias por consultar la documentación técnica sobre <strong>"${articleTitle}"</strong> en SysArmor Tech.
+            Gracias por consultar la documentación técnica sobre <strong>"${articleTitle}"</strong> en Veyxara Core.
           </p>
           <div style="margin: 24px 0; text-align: center;">
             <a href="${fullPdfUrl}" target="_blank" style="background-color: #f59e0b; color: #020617; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 8px; font-size: 14px; display: inline-block;">
@@ -145,7 +145,7 @@ export const POST: APIRoute = async ({ request }) => {
           </div>
           <hr style="border: 0; border-top: 1px solid #1e293b; margin: 24px 0;" />
           <p style="font-size: 11px; color: #64748b; text-align: center;">
-            SysArmor Tech — Infraestructura, Seguridad & Hardening de TI.
+            Veyxara Core — Infraestructura, Seguridad & Hardening de TI.
           </p>
         </div>
       `,

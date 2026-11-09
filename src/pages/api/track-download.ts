@@ -1,4 +1,4 @@
-// src/pages/api/track-download.ts
+﻿// src/pages/api/track-download.ts
 import type { APIRoute } from 'astro';
 
 export const prerender = false;
@@ -54,7 +54,7 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
   } catch (err) {
-    console.error('[SysArmor Server Error]', err);
+    console.error('[Veyxara Server Error]', err);
     return new Response(
       JSON.stringify({ success: false, error: 'Error interno procesando la petición.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }

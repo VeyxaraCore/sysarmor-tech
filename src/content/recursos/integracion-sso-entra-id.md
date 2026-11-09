@@ -1,4 +1,4 @@
----
+﻿---
 title: "Integración SSO con Microsoft Entra ID: Conecta cualquier aplicación SAML 2.0"
 description: "Guía técnica paso a paso para configurar Inicio de Sesión Único (SSO) federado entre Microsoft Entra ID y aplicaciones compatibles con SAML 2.0 usando Salesforce Dev como laboratorio práctico."
 pubDate: 2026-08-18
@@ -140,7 +140,7 @@ pdfUrl: "/docs/integracion-sso-entra-id.pdf"
 <h3>2. Configurar Mapeo de Identidad (Federation ID)</h3>
 <ol>
   <li>Navega a <strong>Configuración &gt; Usuarios &gt; Usuarios</strong>.</li>
-  <li>Edita el usuario objetivo y en el campo <strong>ID de federación (Federation ID)</strong> ingresa el <code>UserPrincipalName</code> exacto registrado en Entra ID (ejemplo: <code>sso_lab@sysarmortech.com</code>).</li>
+  <li>Edita el usuario objetivo y en el campo <strong>ID de federación (Federation ID)</strong> ingresa el <code>UserPrincipalName</code> exacto registrado en Entra ID (ejemplo: <code>sso_lab@veyxara.com</code>).</li>
 </ol>
 
 <h3>3. Asignación de Usuarios en Entra ID</h3>

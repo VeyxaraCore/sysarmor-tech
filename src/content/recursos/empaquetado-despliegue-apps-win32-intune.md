@@ -1,4 +1,4 @@
----
+﻿---
 title: "Empaquetado y Despliegue de Aplicaciones Win32 con Microsoft Intune"
 description: "Guía técnica paso a paso para empaquetar, desplegar y validar aplicaciones Win32 (.exe) en Microsoft Intune con ejecución SYSTEM y reglas de detección."
 pubDate: 2026-08-24
@@ -7,7 +7,7 @@ author: "Alfredo Arévalo"
 isFeatured: true
 image: "/images/Despliegue-Apps-Win32-con-Intune/Despliegue-Apps-Intune.jpeg"
 pdfUrl: "/docs/empaquetado-despliegue-apps-win32-intune.pdf"
-tags: ["Microsoft Intune", "Win32 Apps", "MDM", "PowerShell", "SysArmor Tech"]
+tags: ["Microsoft Intune", "Win32 Apps", "MDM", "PowerShell", "Veyxara Core"]
 ---
 
 > **Enfoque técnico:** Infraestructura, Operación, Seguridad e Innovación bajo estándares de arquitectura limpia.

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Hardening Mínimo de Endpoints Windows 11 con Microsoft Intune"
 description: "Aprende a desplegar políticas de hardening básico en Windows 11 utilizando Microsoft Intune y Entra ID: BitLocker, ASR Rules, Schannel, Defender AV, WUfB y control de USB."
 pubDate: 2026-08-23
@@ -41,8 +41,8 @@ Mantener un branding uniforme en estaciones de trabajo refuerza la identidad cor
 ### Configuración en Intune
 *   **Ruta:** `Devices` → `Configuration profiles` → `Templates` → `Device restrictions`.
 *   **Perfil:** `WIN11-PR-Personalization-SysArmor`.
-*   **Desktop target wallpaper URL:** `https://raw.githubusercontent.com/alfredoarevalo69/recursos-publicos/main/WallPaper_SysArmorTech.png`
-*   **Lock screen background image URL:** `https://raw.githubusercontent.com/alfredoarevalo69/recursos-publicos/main/WallPaper_SysArmorTech.png`
+*   **Desktop target wallpaper URL:** `https://raw.githubusercontent.com/alfredoarevalo69/recursos-publicos/main/WallPaper_VeyxaraCore.png`
+*   **Lock screen background image URL:** `https://raw.githubusercontent.com/alfredoarevalo69/recursos-publicos/main/WallPaper_VeyxaraCore.png`
 
 ![Personalización de pantalla de bloqueo](/images/Hardening_Endpoints/Hardening_Endpoints2.png)
 

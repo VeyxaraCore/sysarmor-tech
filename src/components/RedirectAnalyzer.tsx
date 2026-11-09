@@ -1,4 +1,4 @@
-// src/components/RedirectAnalyzer.tsx
+﻿// src/components/RedirectAnalyzer.tsx
 import React, { useState } from 'react';
 
 interface Hop {
@@ -62,7 +62,7 @@ export default function RedirectAnalyzer() {
       {/* Formulario de entrada */}
       <form onSubmit={handleAnalyze} className="bg-[#020617] border border-slate-800 p-6 rounded-2xl shadow-xl space-y-4">
         <label htmlFor="url-input" className="block text-slate-200 font-semibold text-sm">
-          Ingresa la URL a auditar (ej. https://sysarmortech.com)
+          Ingresa la URL a auditar (ej. https://veyxara.com)
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
           <input

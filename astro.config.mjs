@@ -31,9 +31,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       async serialize(item) {
-        // 1. Inyección masiva y automatizada para la sección de Wallpapers[cite: 1]
+        // 1. Inyección masiva y automatizada para la sección de Wallpapers
         if (item.url === 'https://veyxara.com/wallpapers/') {
-          item.img = wallpapers.map((w) => {
+          /** @type {any} */
+          const customItem = item;
+          customItem.img = wallpapers.map((w) => {
             const fullUrl = w.image.startsWith('http') 
               ? w.image 
               : `https://veyxara.com${w.image.startsWith('/') ? '' : '/'}${w.image}`;
@@ -48,7 +50,9 @@ export default defineConfig({
 
         // 2. Imagen principal para la página de inicio
         if (item.url === 'https://veyxara.com/') {
-          item.img = [
+          /** @type {any} */
+          const customItem = item;
+          customItem.img = [
             {
               url: 'https://veyxara.com/images/og-image.png',
               title: 'Veyxara Core - El núcleo de tu infraestructura',

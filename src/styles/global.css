@@ -1,4 +1,4 @@
-/* src/styles/global.css */
+﻿/* src/styles/global.css */
 @import "tailwindcss";
 
 @theme {
@@ -69,7 +69,7 @@
   contain: layout paint style;
 }
 
-/* Utilidades corporativas de SysArmor Tech */
+/* Utilidades corporativas de Veyxara Core */
 .sys-glow {
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }

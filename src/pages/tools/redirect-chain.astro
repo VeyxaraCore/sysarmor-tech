@@ -1,10 +1,10 @@
----
+﻿---
 // src/pages/tools/redirect-chain.astro
 import Layout from '../../layouts/Layout.astro';
 
-const pageTitle = "Analizador de Cadena de Redirecciones | SysArmor Tech";
+const pageTitle = "Analizador de Cadena de Redirecciones | Veyxara Core";
 const pageDescription = "Audita cadenas de redirección HTTP, códigos de estado final, tiempos de latencia y cabeceras de seguridad para optimización SEO e infraestructura perimetral.";
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmortech.com').toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://veyxara.com').toString();
 ---
 
 <Layout 
@@ -14,8 +14,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmor
 >
     <!-- Datos estructurados SEO (Schema.org WebApplication) -->
     <slot slot="head">
-        <meta name="keywords" content="redirección HTTP, cadena de redirecciones, 301, 302, SEO técnico, latencia HTTP, SysArmor Tech" />
-        <meta name="author" content="SysArmor Tech Infrastructure Team" />
+        <meta name="keywords" content="redirección HTTP, cadena de redirecciones, 301, 302, SEO técnico, latencia HTTP, Veyxara Core" />
+        <meta name="author" content="Veyxara Core Infrastructure Team" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
@@ -27,14 +27,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmor
             {
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Analizador de Cadena de Redirecciones - SysArmor Tech",
-              "url": "https://sysarmortech.com/tools/redirect-chain",
+              "name": "Analizador de Cadena de Redirecciones - Veyxara Core",
+              "url": "https://veyxara.com/tools/redirect-chain",
               "applicationCategory": "DeveloperApplication",
               "operatingSystem": "All",
               "description": "Herramienta de diagnóstico de infraestructura para auditar redirecciones HTTP y códigos de estado en servidores web.",
               "author": {
                 "@type": "Organization",
-                "name": "SysArmor Tech"
+                "name": "Veyxara Core"
               }
             }
         </script>
@@ -77,7 +77,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://sysarmor
                     <input 
                         type="text" 
                         id="url-input" 
-                        placeholder="ej. sysarmortech.com o https://ejemplo.com" 
+                        placeholder="ej. veyxara.com o https://ejemplo.com" 
                         required
                         class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white font-mono text-base focus:outline-none focus:border-amber-500 shadow-inner placeholder-slate-500" 
                     />
