@@ -19,10 +19,10 @@ const sortedPosts = posts.sort((a, b) => {
 const categories = ['Todos', ...new Set(posts.map((post) => post.data.category).filter(Boolean))];
 
 // 2. Metadatos SEO optimizados para la página principal del Blog
-const pageTitle = "Blog de Ingeniería, Hardening y Operaciones | Veyxara Lab";
+const pageTitle = "Blog de Ingeniería, Hardening y Operaciones | Veyxara Core";
 const pageDescription = "Artículos técnicos de nivel 2 y 3 sobre Active Directory, Windows Server, Microsoft Intune, Azure y hardening de infraestructura IT.";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
+const absImage = new URL("/images/og-image.png", Astro.site).href;
 ---
 
 <Layout 
@@ -51,31 +51,34 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
       "url": canonicalUrl,
       "publisher": {
         "@type": "Organization",
-        "name": "Veyxara Lab",
+        "name": "Veyxara Core",
         "logo": {
           "@type": "ImageObject",
-          "url": new URL("/logo.png", Astro.site).href
+          "url": new URL("/favicon.svg", Astro.site).href
         }
       }
     })} />
   </Fragment>
 
-  <!-- --- 1. HERO BANNER PRINCIPAL (Enmarcado en Tarjeta de Consola) --- -->
+  <!-- --- 1. HERO BANNER PRINCIPAL (Negro Carbón Absoluto y Estética Veyxara Core) --- -->
   <section class="w-full bg-[#cbd5e1] pt-8 pb-6 px-4 sm:px-6">
     <div class="container mx-auto max-w-6xl">
       
-      <!-- Contenedor Principal de Consola -->
-      <div class="bg-[#0f172a] border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl shadow-slate-900/15 text-white">
+      <!-- Contenedor Principal en Carbón Absoluto (#05070A) -->
+      <div class="relative bg-[#05070A] border-2 border-zinc-800 rounded-3xl overflow-hidden shadow-2xl text-[#E8EEF5]">
         
+        <!-- Franja superior en Ámbar -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF6600] via-[#FF9900] to-[#FF6600]"></div>
+
         <!-- Barrita Superior de Terminal -->
-        <div class="bg-[#1e293b] px-4 py-2.5 flex items-center justify-between border-b border-slate-700/60">
+        <div class="bg-[#0F131A] px-4 py-2.5 flex items-center justify-between border-b border-zinc-800 mt-1.5">
           <div class="flex items-center space-x-1.5">
             <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
           </div>
-          <span class="text-[11px] font-mono font-bold text-cyan-400 tracking-wider uppercase">
-            Veyxara // Engineering Blog & Operations
+          <span class="text-[11px] font-mono font-bold text-[#00CFFF] tracking-wider uppercase">
+            VEYXARA // ENGINEERING BLOG & OPERATIONS
           </span>
         </div>
 
@@ -85,87 +88,42 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
             
             <!-- Columna Izquierda: Títulos y Descripción -->
             <div class="max-w-2xl space-y-3">
-              <span class="text-xs font-mono font-extrabold text-amber-400 uppercase tracking-widest block">
+              <span class="text-xs font-mono font-extrabold text-[#FF9900] uppercase tracking-widest block">
                 BITÁCORA & OPERACIONES
               </span>
               
-              <h1 class="text-xl sm:text-2xl font-display font-bold text-white tracking-tight leading-snug uppercase">
-                Artículos de ingeniería, <span class="text-amber-400">hardening</span> y operaciones de infraestructura
+              <h1 class="text-xl sm:text-2xl font-display font-bold text-[#E8EEF5] tracking-tight leading-snug uppercase">
+                Artículos de ingeniería, <span class="text-[#FF9900]">hardening</span> y operaciones de infraestructura
               </h1>
               
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans font-normal">
+              <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed font-sans font-normal">
                 Aprendizajes, soluciones y buenas prácticas sobre seguridad, automatización e infraestructura IT.
               </p>
             </div>
 
             <!-- Columna Derecha: Categorías Principales -->
-            <div class="flex flex-col gap-2 shrink-0 w-full lg:w-72 bg-slate-900/90 p-4 rounded-xl border border-slate-800">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mb-1">
+            <div class="flex flex-col gap-2 shrink-0 w-full lg:w-72 bg-[#0F131A] p-4 rounded-xl border border-zinc-800">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-bold mb-1">
                 // Categorías Principales
               </span>
               
-              <div class="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg bg-slate-800/90 border border-slate-700/80 text-slate-200 text-xs font-medium">
-                <span class="h-1.5 w-1.5 rounded-full bg-cyan-400 shrink-0"></span>
+              <div class="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg bg-[#05070A] border border-zinc-800 text-zinc-200 text-xs font-medium">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#00CFFF] shrink-0"></span>
                 Windows Server & Active Directory
               </div>
               
-              <div class="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg bg-slate-800/90 border border-slate-700/80 text-slate-200 text-xs font-medium">
-                <span class="h-1.5 w-1.5 rounded-full bg-cyan-400 shrink-0"></span>
+              <div class="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg bg-[#05070A] border border-zinc-800 text-zinc-200 text-xs font-medium">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#00CFFF] shrink-0"></span>
                 Microsoft 365 & Intune
               </div>
               
-              <div class="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg bg-slate-800/90 border border-slate-700/80 text-slate-200 text-xs font-medium">
-                <span class="h-1.5 w-1.5 rounded-full bg-cyan-400 shrink-0"></span>
+              <div class="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg bg-[#05070A] border border-zinc-800 text-zinc-200 text-xs font-medium">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#00CFFF] shrink-0"></span>
                 Azure & Cloud Security
               </div>
             </div>
 
           </div>
-
-          <!-- Pilares Técnicos en la parte inferior de la Consola -->
-          <div class="pt-5 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <div>
-                <span class="font-bold text-white text-xs block leading-tight font-display">Seguridad</span>
-                <span class="text-[11px] text-slate-400 font-medium font-sans">Nivel empresarial</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3 md:border-l md:border-slate-800 md:pl-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <div>
-                <span class="font-bold text-white text-xs block leading-tight font-display">Infraestructura</span>
-                <span class="text-[11px] text-slate-400 font-medium font-sans">Resiliente y eficiente</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3 md:border-l md:border-slate-800 md:pl-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <div>
-                <span class="font-bold text-white text-xs block leading-tight font-display">Expertos Certificados</span>
-                <span class="text-[11px] text-slate-400 font-medium font-sans">Soporte Nivel 2 y 3</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3 md:border-l md:border-slate-800 md:pl-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <div>
-                <span class="font-bold text-white text-xs block leading-tight font-display">Automatización</span>
-                <span class="text-[11px] text-slate-400 font-medium font-sans">E innovación constante</span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -174,16 +132,16 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
   </section>
 
   <!-- --- 2. FRANJA CON BOTONES DE FILTRO Y BÚSQUEDA --- -->
-  <section class="bg-[#cbd5e1] py-3.5 border-b border-zinc-300/90 sticky top-[76px] z-30 shadow-xs">
-    <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-3">
+  <section class="bg-[#cbd5e1] py-4 border-b border-zinc-300/90 sticky top-[76px] z-30 shadow-xs">
+    <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
       
-      <div class="flex flex-wrap gap-1.5">
+      <div class="flex flex-wrap gap-2">
         {categories.map((category) => (
           <button
-            class={`category-filter px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            class={`category-filter px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all uppercase tracking-wider cursor-pointer ${
               category === 'Todos'
-                ? 'bg-amber-600/20 text-amber-900 border border-amber-600/70 active-filter shadow-xs font-bold'
-                : 'bg-white text-zinc-700 hover:bg-zinc-100 border border-zinc-300'
+                ? 'bg-[#FF9900] text-[#05070A] active-filter shadow-md font-extrabold'
+                : 'bg-white text-zinc-800 hover:bg-zinc-50 border border-zinc-300/80 shadow-2xs'
             }`}
             data-category={category.toLowerCase()}
           >
@@ -192,16 +150,16 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
         ))}
       </div>
 
-      <div class="w-full md:w-64 relative">
+      <div class="w-full md:w-72 relative">
         <input
           type="text"
           id="search-input"
           placeholder="Buscar documentos..."
-          class="w-full pl-9 pr-3 py-1.5 bg-white border border-zinc-300 rounded-lg text-xs text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-amber-600 focus:border-amber-600 transition-all font-medium shadow-xs"
+          class="w-full pl-10 pr-4 py-2 bg-white border border-zinc-300 rounded-xl text-xs sm:text-sm text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all font-medium shadow-2xs"
         />
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 0114 0z" />
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
       </div>
@@ -219,7 +177,7 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
           Base de Conocimientos Técnicos para Administradores de Sistemas
         </h2>
         <p class="text-zinc-700 text-xs sm:text-sm leading-relaxed font-sans font-medium">
-          Bienvenido al centro operativo de <strong class="text-zinc-900">Veyxara Blog</strong>. Este espacio recopila documentación técnica avanzada, guías de arquitectura híbrida, procedimientos de hardening en <strong class="text-zinc-900">Windows Server</strong>, gestión de identidades en <strong class="text-zinc-900">Active Directory</strong> y despliegues de políticas de seguridad mediante <strong class="text-zinc-900">Microsoft Intune</strong>. Todas las soluciones están diseñadas bajo principios estrictos de optimización, automatización con PowerShell y mitigación de vectores de ataque a nivel empresarial.
+          Bienvenido al centro operativo de <strong class="text-zinc-900">Veyxara Core</strong>. Este espacio recopila documentación técnica avanzada, guías de arquitectura híbrida, procedimientos de hardening en <strong class="text-zinc-900">Windows Server</strong>, gestión de identidades en <strong class="text-zinc-900">Active Directory</strong> y despliegues de políticas de seguridad mediante <strong class="text-zinc-900">Microsoft Intune</strong>. Todas las soluciones están diseñadas bajo principios estrictos de optimización, automatización con PowerShell y mitigación de vectores de ataque a nivel empresarial.
         </p>
       </section>
 
@@ -305,12 +263,12 @@ const absImage = new URL("/images/og-blog-sysarmor.jpg", Astro.site).href;
         currentCategory = btn.getAttribute('data-category') || 'todos';
 
         filterButtons.forEach((b) => {
-          b.classList.remove('bg-amber-600/20', 'text-amber-900', 'border-amber-600/70', 'active-filter', 'shadow-xs', 'font-bold');
-          b.classList.add('bg-white', 'text-zinc-700', 'border-zinc-300');
+          b.classList.remove('bg-[#FF9900]', 'text-[#05070A]', 'shadow-md', 'active-filter', 'font-extrabold');
+          b.classList.add('bg-white', 'text-zinc-800', 'border-zinc-300/80', 'shadow-2xs');
         });
 
-        btn.classList.remove('bg-white', 'text-zinc-700', 'border-zinc-300');
-        btn.classList.add('bg-amber-600/20', 'text-amber-900', 'border-amber-600/70', 'active-filter', 'shadow-xs', 'font-bold');
+        btn.classList.remove('bg-white', 'text-zinc-800', 'border-zinc-300/80', 'shadow-2xs');
+        btn.classList.add('bg-[#FF9900]', 'text-[#05070A]', 'shadow-md', 'active-filter', 'font-extrabold');
 
         filterArticles();
       });

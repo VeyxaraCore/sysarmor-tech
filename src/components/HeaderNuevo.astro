@@ -1,0 +1,92 @@
+---
+// src/components/HeaderNuevo.astro
+---
+
+<header class="w-full bg-[#071426]/90 border-b border-[#00CFFF]/20 backdrop-blur-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    
+    <!-- 1. BRANDING / LOGO -->
+    <a href="/" class="flex items-center gap-2 font-bold text-lg text-[#E8EEF5] hover:opacity-90 transition-opacity">
+      <span class="text-[#00CFFF]">VEY</span>XARA <span class="text-[#FF9900]">CORE</span>
+    </a>
+
+    <!-- 2. NAVEGACIÓN AGRUPADA (Dropdowns) -->
+    <nav class="hidden md:flex items-center gap-6 text-sm text-[#E8EEF5]">
+      
+      <!-- DROPDOWN 1: Ingeniería y Arquitectura -->
+      <div class="relative group">
+        <button class="hover:text-[#00CFFF] flex items-center gap-1.5 py-2 transition-colors">
+          Ingeniería
+          <svg class="w-4 h-4 text-[#00CFFF] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        
+        <div class="absolute left-0 hidden group-hover:block w-52 bg-[#071426] border border-[#00CFFF]/20 rounded-lg shadow-xl shadow-[#071426]/80 py-2 mt-0">
+          <a href="/trayectoria" class="block px-4 py-2 text-xs text-gray-300 hover:text-[#00CFFF] hover:bg-[#00CFFF]/10 transition-colors">
+            Trayectoria
+          </a>
+          <a href="/enfoque" class="block px-4 py-2 text-xs text-gray-300 hover:text-[#00CFFF] hover:bg-[#00CFFF]/10 transition-colors">
+            Enfoque Técnico
+          </a>
+          <a href="/casos" class="block px-4 py-2 text-xs text-gray-300 hover:text-[#00CFFF] hover:bg-[#00CFFF]/10 transition-colors">
+            Casos Técnicos
+          </a>
+        </div>
+      </div>
+
+      <!-- DROPDOWN 2: Recursos & Ecosistema (Blog, Q&A, Wallpapers) -->
+      <div class="relative group">
+        <button class="hover:text-[#00CFFF] flex items-center gap-1.5 py-2 transition-colors">
+          Recursos
+          <svg class="w-4 h-4 text-[#00CFFF] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        
+        <div class="absolute left-0 hidden group-hover:block w-56 bg-[#071426] border border-[#00CFFF]/20 rounded-lg shadow-xl shadow-[#071426]/80 py-2 mt-0">
+          <a href="/blog" class="block px-4 py-2 text-xs text-gray-300 hover:text-[#00CFFF] hover:bg-[#00CFFF]/10 transition-colors">
+            Blog Técnico
+          </a>
+          <a href="/qa" class="block px-4 py-2 text-xs text-gray-300 hover:text-[#00CFFF] hover:bg-[#00CFFF]/10 transition-colors">
+            Preguntas Frecuentes (Q&A)
+          </a>
+          <a href="/wallpapers" class="block px-4 py-2 text-xs text-gray-300 hover:text-[#00CFFF] hover:bg-[#00CFFF]/10 transition-colors">
+            Wallpapers & Ecosistema
+          </a>
+        </div>
+      </div>
+
+      <!-- LINK DIRECTO: Contacto -->
+      <a href="/contacto" class="hover:text-[#00CFFF] transition-colors">
+        Contacto
+      </a>
+    </nav>
+
+    <!-- 3. ACCIONES DERECHA (Buscador Compacto + Botón Herramientas) -->
+    <div class="flex items-center gap-3">
+      
+      <!-- Buscador compacto Ctrl+K -->
+      <button 
+        aria-label="Buscar"
+        class="p-2 border border-[#00CFFF]/20 rounded-md bg-[#071426] text-gray-400 hover:text-[#00CFFF] hover:border-[#00CFFF]/40 flex items-center gap-2 text-xs transition-colors"
+      >
+        <svg class="w-4 h-4 text-[#00CFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <kbd class="hidden lg:inline-block px-1.5 py-0.5 text-[10px] bg-[#071426] text-gray-400 rounded border border-gray-700 font-mono">
+          Ctrl K
+        </kbd>
+      </button>
+
+      <!-- Botón Destacado -->
+      <a 
+        href="/herramientas" 
+        class="bg-[#FF9900] hover:bg-[#FF9900]/90 text-[#071426] font-semibold px-4 py-1.5 rounded-md text-xs transition-colors shadow-md shadow-[#FF9900]/10"
+      >
+        Herramientas
+      </a>
+    </div>
+
+  </div>
+</header>

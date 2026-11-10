@@ -7,11 +7,12 @@ export interface Wallpaper {
   resolution: string;
   aspectRatio: string;
   image: string;
+  downloadUrl?: string;
 }
 
 interface Props {
   wallpaper: Wallpaper;
-  index?: number; // Índice único de la posición en el grid
+  index?: number;
 }
 
 const { wallpaper, index = 0 } = Astro.props;
@@ -25,7 +26,6 @@ const uniqueModalId = `modal-wallpaper-${index}-${wallpaper.id || 'item'}`;
 ---
 
 <div class="wallpaper-card group">
-  <!-- Vista previa con ID único basado en su posición real -->
   <div class="card-media-wrapper cursor-pointer preview-trigger" data-modal-target={uniqueModalId}>
     <img 
       src={wallpaper.image} 
@@ -33,20 +33,16 @@ const uniqueModalId = `modal-wallpaper-${index}-${wallpaper.id || 'item'}`;
       loading="lazy"
       decoding="async"
       class={`w-full h-full transition-all duration-700 ease-out group-hover:scale-105 ${
-        isVertical 
-          ? 'object-cover object-top group-hover:object-bottom' 
-          : 'object-cover object-center'
+        isVertical ? 'object-cover object-top group-hover:object-bottom' : 'object-cover object-center'
       }`}
     />
     
-    <!-- Badge de Resolución -->
-    <span class="absolute top-3 right-3 bg-[#171D27]/90 border border-[#00CFFF]/40 text-[#00CFFF] text-[10px] font-mono px-2 py-1 rounded-md backdrop-blur-md z-10">
+    <span class="absolute top-3 right-3 bg-[#05070A]/90 border border-[#FF9900]/40 text-[#FF9900] text-[10px] font-mono px-2 py-1 rounded-md backdrop-blur-md z-10">
       {wallpaper.resolution}
     </span>
 
-    <!-- Overlay "Vista Previa" al pasar el ratón -->
-    <div class="absolute inset-0 bg-[#171D27]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
-      <span class="bg-[#00CFFF] text-[#171D27] text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-lg">
+    <div class="absolute inset-0 bg-[#05070A]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+      <span class="bg-[#FF9900] text-[#05070A] text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -56,22 +52,20 @@ const uniqueModalId = `modal-wallpaper-${index}-${wallpaper.id || 'item'}`;
     </div>
   </div>
 
-  <!-- Información de la tarjeta en Grafito Metálico (#171D27) -->
-  <div class="p-5 flex flex-col justify-between flex-grow bg-[#171D27]">
+  <div class="p-5 flex flex-col justify-between flex-grow bg-[#05070A]">
     <div>
-      <span class="text-xs font-mono text-[#00CFFF] uppercase tracking-wider">
+      <span class="text-xs font-mono text-[#FF9900] uppercase tracking-wider">
         CATEGORÍA: {wallpaper.category}
       </span>
-      <h3 class="text-base font-bold text-[#E8EEF5] mt-1 group-hover:text-[#00CFFF] transition-colors">
+      <h3 class="text-base font-bold text-[#E8EEF5] mt-1 group-hover:text-[#FF9900] transition-colors">
         {wallpaper.title}
       </h3>
     </div>
 
-    <!-- Botones de Acción -->
-    <div class="mt-6 pt-4 border-t border-slate-700/60 flex items-center justify-between gap-2">
+    <div class="mt-6 pt-4 border-t border-zinc-800 flex items-center justify-between gap-2">
       <button 
         type="button"
-        class="preview-trigger text-xs text-slate-300 hover:text-[#00CFFF] font-mono transition-colors flex items-center gap-1 cursor-pointer"
+        class="preview-trigger text-xs text-zinc-400 hover:text-[#FF9900] font-mono transition-colors flex items-center gap-1 cursor-pointer"
         data-modal-target={uniqueModalId}
       >
         <span>🔍 Ampliar Arte</span>
@@ -79,7 +73,7 @@ const uniqueModalId = `modal-wallpaper-${index}-${wallpaper.id || 'item'}`;
 
       <button 
         type="button"
-        class="download-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00CFFF]/10 border border-[#00CFFF]/40 text-[#00CFFF] text-xs font-bold hover:bg-[#00CFFF] hover:text-[#171D27] transition-all cursor-pointer"
+        class="download-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0F131A] border border-[#FF9900]/40 text-[#FF9900] text-xs font-bold hover:bg-[#FF9900] hover:text-[#05070A] transition-all cursor-pointer shadow-xs"
         data-image={wallpaper.image}
         data-title={wallpaper.title}
         data-resolution={wallpaper.resolution}
@@ -93,59 +87,47 @@ const uniqueModalId = `modal-wallpaper-${index}-${wallpaper.id || 'item'}`;
     </div>
   </div>
 
-  <!-- MODAL DE PREVISUALIZACIÓN EN PANTALLA COMPLETA -->
-  <dialog id={uniqueModalId} class="wallpaper-modal p-0 rounded-2xl bg-transparent backdrop:bg-[#171D27]/90 backdrop:backdrop-blur-md">
-    <div class="relative max-w-4xl max-h-[90vh] bg-[#171D27] border border-[#00CFFF]/40 rounded-2xl p-4 md:p-6 overflow-hidden flex flex-col items-center text-[#E8EEF5]">
+  <dialog id={uniqueModalId} class="wallpaper-modal p-0 rounded-2xl bg-transparent backdrop:bg-[#05070A]/95 backdrop:backdrop-blur-md w-full max-w-7xl">
+    <div class="relative w-full h-[95vh] bg-[#05070A] border-2 border-zinc-800 rounded-2xl p-4 md:p-6 overflow-hidden flex flex-col items-center text-[#E8EEF5]">
       
-      <!-- Cabecera del Modal -->
-      <div class="w-full flex items-center justify-between mb-4 pb-2 border-b border-slate-700">
+      <div class="w-full flex items-center justify-between mb-3 pb-2 border-b border-zinc-800 shrink-0">
         <div>
-          <h3 class="text-lg font-bold text-[#E8EEF5]">{wallpaper.title}</h3>
-          <span class="text-xs font-mono text-[#00CFFF]">{wallpaper.resolution} • {wallpaper.category}</span>
+          <h3 class="text-base md:text-lg font-bold text-[#E8EEF5]">{wallpaper.title}</h3>
+          <span class="text-xs font-mono text-[#FF9900]">{wallpaper.resolution} • {wallpaper.category}</span>
         </div>
         
         <form method="dialog">
-          <button class="p-2 text-slate-300 hover:text-white bg-slate-800 rounded-lg transition-colors cursor-pointer">
-            ✕
+          <button class="px-3 py-1.5 text-zinc-300 hover:text-white bg-[#0F131A] border border-zinc-800 rounded-lg transition-colors cursor-pointer text-sm font-bold">
+            ✕ Cerrar
           </button>
         </form>
       </div>
 
-      <!-- Imagen Completa con carga diferida -->
-      <div class="relative overflow-auto max-h-[70vh] w-full flex justify-center bg-black/50 rounded-xl p-2 border border-slate-800">
+      <div class="relative overflow-auto flex-grow w-full flex items-center justify-center bg-black/80 rounded-xl p-2 border border-zinc-800">
         <img 
           data-src={wallpaper.image} 
           alt={wallpaper.title} 
           loading="lazy"
-          class="modal-img max-h-[68vh] w-auto object-contain rounded-lg shadow-2xl"
+          class="modal-img max-h-[80vh] max-w-full w-auto h-auto object-contain rounded-lg shadow-2xl"
         />
       </div>
 
-      <!-- Pie del Modal -->
-      <div class="w-full mt-4 pt-3 border-t border-slate-700 flex flex-col gap-3">
-        <div class="p-3 rounded-xl bg-[#071426] border border-[#00CFFF]/20 text-center">
-          <p class="text-[11px] md:text-xs text-slate-300 font-mono leading-relaxed">
-            <strong class="text-[#00CFFF]">Veyx</strong> encabeza la contención de infraestructura y fuerza operativa; <strong class="text-[#FF9900]">Xara</strong> comanda la ciberinteligencia y la sincronización de nodos en <span class="text-[#00CFFF]">Veyxara Core</span>.
-          </p>
-        </div>
-
-        <div class="flex items-center justify-between">
-          <span class="text-xs text-slate-400 font-mono">Optimizado para {wallpaper.resolution}.</span>
-          
-          <button 
-            type="button"
-            class="download-btn px-5 py-2 rounded-xl bg-[#00CFFF] text-[#171D27] font-bold text-sm hover:bg-cyan-300 transition-all flex items-center gap-2 cursor-pointer"
-            data-image={wallpaper.image}
-            data-title={wallpaper.title}
-            data-resolution={wallpaper.resolution}
-            data-category={wallpaper.category}
-          >
-            <span>Descargar en Alta Resolución (JPG)</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-          </button>
-        </div>
+      <div class="w-full mt-3 pt-2 border-t border-zinc-800 flex items-center justify-between shrink-0">
+        <span class="text-xs text-zinc-400 font-mono">Optimizado para {wallpaper.resolution}.</span>
+        
+        <button 
+          type="button"
+          class="download-btn px-5 py-2 rounded-xl bg-[#FF9900] text-[#05070A] font-bold text-sm hover:bg-amber-400 transition-all flex items-center gap-2 cursor-pointer shadow-md"
+          data-image={wallpaper.image}
+          data-title={wallpaper.title}
+          data-resolution={wallpaper.resolution}
+          data-category={wallpaper.category}
+        >
+          <span>Descargar en Alta Resolución (JPG)</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+        </button>
       </div>
 
     </div>
@@ -237,50 +219,43 @@ const uniqueModalId = `modal-wallpaper-${index}-${wallpaper.id || 'item'}`;
 
 <style>
   .wallpaper-card {
-    background-color: #171D27;
-    border: 1px solid rgba(0, 207, 255, 0.25);
+    background-color: #05070A;
+    border: 1px solid rgba(255, 153, 0, 0.3);
     border-radius: 16px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: all 0.25s ease-in-out;
   }
-
   .card-media-wrapper {
     position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background-color: #071426;
+    background-color: #000000;
   }
-
   .wallpaper-card:hover {
-    border-color: rgba(0, 207, 255, 0.6);
+    border-color: rgba(255, 153, 0, 0.8);
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(0, 207, 255, 0.15);
+    box-shadow: 0 10px 25px -5px rgba(255, 153, 0, 0.2);
   }
-
   body:has(dialog.wallpaper-modal[open]) {
     overflow: hidden;
   }
-
   dialog.wallpaper-modal {
     margin: auto;
     max-height: 95vh;
     animation: fadeIn 0.2s ease-out forwards;
   }
-
   dialog.wallpaper-modal[open] {
     display: flex;
     flex-direction: column;
   }
-
   dialog.wallpaper-modal::backdrop {
-    background: rgba(23, 29, 39, 0.85);
+    background: rgba(5, 7, 10, 0.85);
     backdrop-filter: blur(8px);
     position: fixed;
     inset: 0;
   }
-
   @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }

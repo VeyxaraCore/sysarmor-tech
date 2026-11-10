@@ -1,4 +1,5 @@
 ---
+// src/components/blog/ArticleCard.astro
 const { title, description, category, pubDate, slug, image } = Astro.props;
 
 // Enlace interno a la vista dinámica del blog
@@ -10,11 +11,11 @@ const formattedDate = pubDate
   : null;
 ---
 
-<article class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden flex flex-col justify-between hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 group h-full">
+<article class="bg-[#05070A] border border-zinc-800 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#FF9900]/80 hover:shadow-xl hover:shadow-[#FF9900]/10 transition-all duration-300 group h-full">
   
   {/* IMAGEN PORTADA CON FONDO DIFUMINADO Y CONTENIDO COMPLETO */}
   {image ? (
-    <a href={articleUrl} class="block overflow-hidden bg-slate-950 aspect-[16/10] relative border-b border-slate-800/80 shrink-0 w-full">
+    <a href={articleUrl} class="block overflow-hidden bg-black aspect-[16/10] relative border-b border-zinc-800 shrink-0 w-full">
       {/* Fondo difuminado para rellenar espacios vacíos sin cortar la imagen principal */}
       <img 
         src={image} 
@@ -31,8 +32,8 @@ const formattedDate = pubDate
       />
     </a>
   ) : (
-    <div class="h-44 bg-gradient-to-br from-slate-800 via-slate-900 to-amber-950/30 p-5 flex flex-col justify-between border-b border-slate-800/80 shrink-0">
-      <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+    <div class="h-44 bg-gradient-to-br from-[#0F131A] via-[#05070A] to-amber-950/20 p-5 flex flex-col justify-between border-b border-zinc-800 shrink-0">
+      <div class="w-10 h-10 rounded-lg bg-[#FF9900]/10 border border-[#FF9900]/20 flex items-center justify-center text-[#FF9900]">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
@@ -43,14 +44,14 @@ const formattedDate = pubDate
   {/* CUERPO DEL TEXTO CON FLEX-1 PARA EMPUJAR EL FOOTER */}
   <div class="p-5 flex-1 flex flex-col justify-between">
     <div>
-      <h3 class="text-white font-bold text-base md:text-lg leading-snug group-hover:text-amber-400 transition-colors mb-2 min-h-[5.5rem] flex items-start">
+      <h3 class="text-[#E8EEF5] font-bold text-base md:text-lg leading-snug group-hover:text-[#FF9900] transition-colors mb-2 min-h-[5.5rem] flex items-start">
         <a href={articleUrl} class="block">
           {title}
         </a>
       </h3>
 
       {description && (
-        <p class="text-slate-400 text-xs md:text-sm line-clamp-2 leading-relaxed">
+        <p class="text-zinc-300 text-xs md:text-sm line-clamp-2 leading-relaxed">
           {description}
         </p>
       )}
@@ -58,24 +59,24 @@ const formattedDate = pubDate
   </div>
 
   {/* FOOTER SIMÉTRICO ALINEADO ABAJO */}
-  <div class="p-4 flex items-center justify-between gap-2 text-xs text-slate-400 bg-slate-900/90 border-t border-slate-800/80 shrink-0">
+  <div class="p-4 flex items-center justify-between gap-2 text-xs text-zinc-400 bg-[#05070A] border-t border-zinc-800 shrink-0">
     
     {category && (
-      <span class="font-semibold px-2.5 py-1 bg-amber-500/10 text-amber-400 rounded-full border border-amber-500/20 text-[11px] truncate max-w-[130px] whitespace-nowrap">
+      <span class="font-mono font-semibold px-2.5 py-1 bg-[#0F131A] text-[#FF9900] rounded-lg border border-[#FF9900]/40 text-[11px] truncate max-w-[130px] whitespace-nowrap">
         {category}
       </span>
     )}
 
     <div class="flex items-center gap-3 ml-auto whitespace-nowrap">
       {formattedDate && (
-        <span class="text-slate-500 text-[11px]">
+        <span class="text-zinc-500 text-[11px] font-mono">
           {formattedDate}
         </span>
       )}
 
       <a 
         href={articleUrl} 
-        class="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 hover:text-amber-300"
+        class="text-[#FF9900] font-mono font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 hover:text-amber-300"
       >
         Leer artículo &rarr;
       </a>
