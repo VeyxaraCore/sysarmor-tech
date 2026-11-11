@@ -480,4 +480,31 @@ export const wallpapers: Wallpaper[] = [
     image: '/wallpapers/thor-ragnarok.webp',    
     downloadUrl: '/wallpapers/thor-ragnarok.webp'
   },
+    {
+    id: 'alien',
+    title: 'Alien el octavo pasajero',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/alien.webp',    
+    downloadUrl: '/wallpapers/alien.webp'
+  },
+    {
+    id: 'depredador',
+    title: 'Depredador Tierras Salvajes',
+    category: 'Mobile', 
+    resolution: '1080x1920 (FHD+)',
+    aspectRatio: '9:16',
+    image: '/wallpapers/depredador.webp',    
+    downloadUrl: '/wallpapers/depredador.webp'
+  },
+  {
+    id: 'nave-espacial',
+    title: 'Nave Espacial',
+    category: 'Desktop', 
+    resolution: '3840x2160 (4K)',
+    aspectRatio: '16:9',
+    image: '/wallpapers/nave-espacial.webp',    
+    downloadUrl: '/wallpapers/nave-espacial.webp'
+  },
 ];
