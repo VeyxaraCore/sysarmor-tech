@@ -63,15 +63,6 @@ export const wallpapers: Wallpaper[] = [
     image: '/wallpapers/logo-el-futuro.webp',
     downloadUrl: '',
   },
-   {
-    id: 'logo-rack',
-    title: 'Logo Veyxara e un Rack',
-    category: 'Official Asset',
-    resolution: '1080x1920 (FHD+)',
-    aspectRatio: '9:16',
-    image: '/wallpapers/logo-rack.webp',
-    downloadUrl: '',
-  },
   {
     id: 'logo perspectiva',
     title: 'Logo perspectiva',
