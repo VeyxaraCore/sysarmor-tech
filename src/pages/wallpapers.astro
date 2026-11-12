@@ -1,21 +1,30 @@
+---
 // src/pages/wallpapers.astro
 export const prerender = true;
 
 import Layout from '../layouts/Layout.astro';
 import WallpaperCard from '../components/WallpaperCard.astro';
-import { wallpapers } from '../data/wallpapers';
-import { wallpapers as brandWallpapers } from '../data/wallpapers-brand';
 
-const categories = ['Todos', ...new Set(wallpapers.map((w) => w.category).filter(Boolean))];
+// Importación protegida directamente tipada
+import { wallpapers as rawWallpapers } from '../data/wallpapers';
+import { wallpapers as rawBrandWallpapers } from '../data/wallpapers-brand';
+
+const wallpapersList = Array.isArray(rawWallpapers) ? rawWallpapers : [];
+const brandList = Array.isArray(rawBrandWallpapers) ? rawBrandWallpapers : [];
+
+const categories = ['Todos', ...Array.from(new Set(wallpapersList.map((w: any) => w.category).filter(Boolean)))];
+
 const pageTitle = "Wallpapers Oficiales 4K y Mobile | Veyxara Core";
 const pageDescription = "Descarga los fondos de pantalla oficiales de VEYX y XARA en alta resolución. Arte digital de ciencia ficción, ciberseguridad e infraestructura crítica 100% gratuito.";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const absImage = new URL("/images/og-wallpapers.jpg", Astro.site).href;
 
-const wallpapersJson = JSON.stringify(wallpapers.map(w => ({
-  title: w.title,
-  image: w.image
-})));
+const hasWallpapers = wallpapersList.length > 0;
+const randomFeatured = hasWallpapers 
+  ? wallpapersList[Math.floor(Math.random() * wallpapersList.length)] 
+  : null;
+
+const hasBrandWallpapers = brandList.length > 0;
 ---
 
 <Layout title={pageTitle} description={pageDescription} canonical={canonicalUrl}>
@@ -28,7 +37,7 @@ const wallpapersJson = JSON.stringify(wallpapers.map(w => ({
     <meta property="og:image" content={absImage} />
   </Fragment>
 
-  <!-- --- 1. HERO PRINCIPAL: Negro Carbón Absoluto y Línea Ámbar Pura --- -->
+  <!-- HERO PRINCIPAL -->
   <section class="w-full bg-[#cbd5e1] pt-6 pb-6 px-4 sm:px-6">
     <div class="container mx-auto max-w-6xl">
       <div class="relative bg-[#05070A] border-2 border-[#FF9900]/60 rounded-3xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.5)] text-[#E8EEF5] p-6 md:p-10">
@@ -56,42 +65,25 @@ const wallpapersJson = JSON.stringify(wallpapers.map(w => ({
             </div>
           </div>
 
-          <!-- Tarjeta Destacada Dinámica -->
-          <div class="shrink-0 w-full sm:w-72 bg-[#0F131A] border-2 border-zinc-800 rounded-2xl p-4 shadow-[0_10px_25px_rgba(0,0,0,0.6)]">
-            <div class="space-y-3">
-              <div class="aspect-[9/16] max-h-60 w-full overflow-hidden rounded-xl bg-black border border-zinc-800">
-                <img id="hero-random-img" src="" alt="Wallpaper Destacado" class="w-full h-full object-cover object-top transition-opacity duration-500" />
-              </div>
-              <div class="text-center pb-1">
-                <span class="text-[10px] font-mono text-[#FF9900] uppercase tracking-wider block">// DESTACADO DEL NÚCLEO</span>
-                <p id="hero-random-title" class="text-xs font-bold text-[#E8EEF5] truncate mt-0.5">Cargando...</p>
+          {randomFeatured && (
+            <div class="shrink-0 w-full sm:w-72 bg-[#0F131A] border-2 border-zinc-800 rounded-2xl p-4 shadow-[0_10px_25px_rgba(0,0,0,0.6)]">
+              <div class="space-y-3">
+                <div class="aspect-[9/16] max-h-60 w-full overflow-hidden rounded-xl bg-black border border-zinc-800">
+                  <img src={randomFeatured.image} alt={randomFeatured.title} class="w-full h-full object-cover object-top transition-opacity duration-500" />
+                </div>
+                <div class="text-center pb-1">
+                  <span class="text-[10px] font-mono text-[#FF9900] uppercase tracking-wider block">// DESTACADO DEL NÚCLEO</span>
+                  <p class="text-xs font-bold text-[#E8EEF5] truncate mt-0.5">{randomFeatured.title}</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Script para inyectar una imagen aleatoria diferente en cada recarga -->
-  <script define:vars={{ wallpapersJson }}>
-    const wallpapersList = JSON.parse(wallpapersJson);
-    if (wallpapersList && wallpapersList.length > 0) {
-      const randomIndex = Math.floor(Math.random() * wallpapersList.length);
-      const selected = wallpapersList[randomIndex];
-      
-      const imgElement = document.getElementById('hero-random-img');
-      const titleElement = document.getElementById('hero-random-title');
-
-      if (imgElement && titleElement && selected) {
-        imgElement.src = selected.image;
-        imgElement.alt = selected.title;
-        titleElement.textContent = selected.title;
-      }
-    }
-  </script>
-
-  <!-- Barra de Filtros -->
+  <!-- BARRA DE FILTROS -->
   <section class="bg-[#cbd5e1] py-4 border-b border-zinc-300/90 sticky top-[76px] z-30 shadow-xs">
     <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-3">
       <div class="flex flex-wrap gap-1.5">
@@ -104,20 +96,21 @@ const wallpapersJson = JSON.stringify(wallpapers.map(w => ({
       <div class="w-full md:w-72 relative">
         <input type="text" id="search-input" placeholder="Buscar wallpaper por nombre..." class="w-full pl-9 pr-3 py-2 bg-white border border-zinc-300 rounded-xl text-xs text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#FF9900] transition-all font-medium shadow-xs" />
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 0114 0z" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="bg-[#cbd5e1] min-h-screen py-8 text-neutral-900">
     <div class="container mx-auto max-w-6xl space-y-12 px-4">
       
-      <!-- SECCIÓN 1: Wallpapers de Escritorio y Móvil -->
+      <!-- SECCIÓN 1: Wallpapers -->
       <div>
-        {wallpapers.length > 0 ? (
+        {hasWallpapers ? (
           <div id="wallpapers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {wallpapers.map((item, index) => (
+            {wallpapersList.map((item: any, index: number) => (
               <div class="wallpaper-item" data-category={item.category?.toLowerCase() || ''} data-title={item.title?.toLowerCase() || ''}>
                 <WallpaperCard wallpaper={item} index={index} />
               </div>
@@ -133,7 +126,7 @@ const wallpapersJson = JSON.stringify(wallpapers.map(w => ({
         </div>
       </div>
 
-      <!-- SECCIÓN 2: Ecosistema Visual & Brand Gallery (Conectado a wallpapers-brand.ts y Modal Ampliado) -->
+      <!-- SECCIÓN 2: Brand Gallery -->
       <div class="relative bg-[#05070A] border-2 border-zinc-800 rounded-3xl overflow-hidden shadow-2xl text-[#E8EEF5] p-6 md:p-10">
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF6600] via-[#FF9900] to-[#FF6600]"></div>
 
@@ -146,100 +139,54 @@ const wallpapersJson = JSON.stringify(wallpapers.map(w => ({
             Ecosistema Visual & <span class="text-[#FF9900]">Brand Gallery</span>
           </h2>
           <p class="text-xs sm:text-sm text-zinc-300 font-sans">
-            Exhibición oficial de identidad de marca, concept art y elementos gráficos institucionales de Veyxara Core. Diseños protegidos de exhibición exclusiva.
+            Exhibición oficial de identidad de marca, concept art y elementos gráficos institucionales de Veyxara Core.
           </p>
         </div>
 
-        {brandWallpapers && brandWallpapers.length > 0 ? (
+        {hasBrandWallpapers ? (
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {brandWallpapers.map((asset, index) => {
+            {brandList.map((asset: any, index: number) => {
               const brandModalId = `modal-brand-${index}-${asset.id || 'item'}`;
               return (
                 <div class="bg-[#0F131A] border border-zinc-800 rounded-2xl overflow-hidden shadow-xl group flex flex-col justify-between">
-                  
-                  <!-- Contenedor de la Imagen con disparador de vista previa -->
                   <div class="relative overflow-hidden aspect-video bg-black cursor-pointer preview-trigger" data-modal-target={brandModalId}>
-                    <img 
-                      src={asset.image} 
-                      alt={asset.title} 
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
+                    <img src={asset.image} alt={asset.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                     <div class="absolute inset-0 bg-gradient-to-t from-[#0F131A] via-transparent to-transparent opacity-60"></div>
-                    
-                    <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-lg bg-[#05070A]/90 text-[#FF9900] border border-[#FF9900]/40 font-semibold backdrop-blur-xs uppercase tracking-wider z-10">
-                      {asset.category}
-                    </span>
-
-                    <div class="absolute inset-0 bg-[#05070A]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
-                      <span class="bg-[#FF9900] text-[#05070A] text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                        Inspeccionar Arte
-                      </span>
-                    </div>
+                    <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-1 rounded-lg bg-[#05070A]/90 text-[#FF9900] border border-[#FF9900]/40 font-semibold uppercase tracking-wider z-10">{asset.category}</span>
                   </div>
                   
-                  <!-- Pie de la tarjeta -->
                   <div class="p-4 flex items-center justify-between border-t border-zinc-800 bg-[#0F131A]">
                     <div>
                       <h3 class="text-xs font-mono font-bold text-[#FF9900]">{asset.title}</h3>
                       <p class="text-[11px] text-zinc-400 font-mono mt-0.5">{asset.resolution}</p>
                     </div>
-                    <button 
-                      type="button"
-                      class="preview-trigger text-[10px] font-mono px-2.5 py-1 rounded-lg bg-[#05070A] text-[#FF9900] border border-[#FF9900]/40 font-semibold hover:bg-[#FF9900] hover:text-[#05070A] transition-all cursor-pointer"
-                      data-modal-target={brandModalId}
-                    >
+                    <button type="button" class="preview-trigger text-[10px] font-mono px-2.5 py-1 rounded-lg bg-[#05070A] text-[#FF9900] border border-[#FF9900]/40 font-semibold hover:bg-[#FF9900] hover:text-[#05070A] transition-all cursor-pointer" data-modal-target={brandModalId}>
                       🔍 Ampliar
                     </button>
                   </div>
 
-                  <!-- MODAL DE PREVISIONALIZACIÓN EXPANDIDA A ALTA RESOLUCIÓN -->
                   <dialog id={brandModalId} class="wallpaper-modal p-0 rounded-2xl bg-transparent backdrop:bg-[#05070A]/95 backdrop:backdrop-blur-md w-full max-w-7xl">
                     <div class="relative w-full h-[95vh] bg-[#05070A] border-2 border-zinc-800 rounded-2xl p-4 md:p-6 overflow-hidden flex flex-col items-center text-[#E8EEF5]">
-                      
                       <div class="w-full flex items-center justify-between mb-3 pb-2 border-b border-zinc-800 shrink-0">
                         <div>
                           <h3 class="text-base md:text-lg font-bold text-[#E8EEF5]">{asset.title}</h3>
-                          <span class="text-xs font-mono text-[#FF9900]">{asset.resolution} • {asset.category} (Exhibición Protegida)</span>
+                          <span class="text-xs font-mono text-[#FF9900]">{asset.resolution} • {asset.category}</span>
                         </div>
-                        
                         <form method="dialog">
-                          <button class="px-3 py-1.5 text-zinc-300 hover:text-white bg-[#0F131A] border border-zinc-800 rounded-lg transition-colors cursor-pointer text-sm font-bold">
-                            ✕ Cerrar
-                          </button>
+                          <button class="px-3 py-1.5 text-zinc-300 hover:text-white bg-[#0F131A] border border-zinc-800 rounded-lg cursor-pointer text-sm font-bold">✕ Cerrar</button>
                         </form>
                       </div>
-
                       <div class="relative overflow-auto flex-grow w-full flex items-center justify-center bg-black/80 rounded-xl p-2 border border-zinc-800">
-                        <img 
-                          data-src={asset.image} 
-                          alt={asset.title} 
-                          loading="lazy"
-                          class="modal-img max-h-[80vh] max-w-full w-auto h-auto object-contain rounded-lg shadow-2xl"
-                        />
+                        <img data-src={asset.image} alt={asset.title} loading="lazy" class="modal-img max-h-[80vh] max-w-full w-auto h-auto object-contain rounded-lg shadow-2xl" />
                       </div>
-
-                      <div class="w-full mt-3 pt-2 border-t border-zinc-800 text-center shrink-0">
-                        <p class="text-[11px] md:text-xs text-zinc-400 font-mono">
-                          <strong class="text-[#FF9900]">Propiedad Intelectual Protegida:</strong> Este elemento forma parte del núcleo visual y de marca de <span class="text-[#FF9900]">Veyxara Core</span> y no cuenta con descarga pública.
-                        </p>
-                      </div>
-
                     </div>
                   </dialog>
-
                 </div>
               );
             })}
           </div>
         ) : (
-          <div class="text-center py-8 text-zinc-400 text-xs font-mono">
-            No hay elementos registrados en la Brand Gallery.
-          </div>
+          <div class="text-center py-8 text-zinc-400 text-xs font-mono">No hay elementos registrados en la Brand Gallery.</div>
         )}
       </div>
 
